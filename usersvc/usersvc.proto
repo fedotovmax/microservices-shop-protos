@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package usersvc;
+
+import "validate/validate.proto";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/fedotovmax/microservices-shop-protos/usersvc";
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+}
+
+message CreateUserRequest {
+  string email = 1 [(validate.rules).string.email = true];
+  string password = 2 [
+    (validate.rules).string = {
+      min_len: 8,
+      max_len: 24
+    }
+  ];
+}
+
+message CreateUserResponse {
+  string id = 1;
+}
