@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package sessionspb;
+
+import "validate/validate.proto";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/fedotovmax/microservices-shop-protos/sessionspb";

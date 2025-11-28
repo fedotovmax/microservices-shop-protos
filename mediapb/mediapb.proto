@@ -1,0 +1,10 @@
+
+syntax = "proto3";
+
+package mediapb;
+
+import "validate/validate.proto";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/fedotovmax/microservices-shop-protos/mediapb"; 
