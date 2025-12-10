@@ -1,0 +1,3 @@
+
+contract:
+	@./gen.sh

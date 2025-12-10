@@ -3,11 +3,23 @@ syntax = "proto3";
 package userspb;
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
 
 option go_package = "github.com/fedotovmax/microservices-shop-protos/userspb";
 
 service UserService {
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc FindUserByID(FindUserByIDRequest) returns (User);
+  rpc FindUserByEmail(FindUserByEmailRequest) returns (User);
+}
+
+message FindUserByIDRequest {
+  string id = 1;
+}
+
+message FindUserByEmailRequest {
+  string email = 1;
 }
 
 message CreateUserRequest {
@@ -17,4 +29,30 @@ message CreateUserRequest {
 
 message CreateUserResponse {
   string id = 1;
+}
+
+message User {
+  google.protobuf.Timestamp created_at = 1;
+  google.protobuf.Timestamp updated_at = 2;
+  Profile profile = 3;
+  string id = 4;
+  string email = 5;
+  optional string phone = 6;
+  string password_hash = 7;
+}
+
+message Profile {
+  google.protobuf.Timestamp updated_at = 1;
+  optional google.protobuf.Timestamp birth_date = 2;
+  optional string last_name = 3;
+  optional string first_name = 4;
+  optional string middle_name = 5;
+  optional string avatar_url = 6;
+  optional Gender gender = 7;
+}
+
+enum Gender {
+  GENDER_UNSPECIFIED = 0;
+  MALE = 1;
+  FEMALE = 2;
 }

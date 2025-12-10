@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/emptypb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -22,6 +23,143 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Gender int32
+
+const (
+	Gender_GENDER_UNSPECIFIED Gender = 0
+	Gender_MALE               Gender = 1
+	Gender_FEMALE             Gender = 2
+)
+
+// Enum value maps for Gender.
+var (
+	Gender_name = map[int32]string{
+		0: "GENDER_UNSPECIFIED",
+		1: "MALE",
+		2: "FEMALE",
+	}
+	Gender_value = map[string]int32{
+		"GENDER_UNSPECIFIED": 0,
+		"MALE":               1,
+		"FEMALE":             2,
+	}
+)
+
+func (x Gender) Enum() *Gender {
+	p := new(Gender)
+	*p = x
+	return p
+}
+
+func (x Gender) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Gender) Descriptor() protoreflect.EnumDescriptor {
+	return file_userspb_userspb_proto_enumTypes[0].Descriptor()
+}
+
+func (Gender) Type() protoreflect.EnumType {
+	return &file_userspb_userspb_proto_enumTypes[0]
+}
+
+func (x Gender) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Gender.Descriptor instead.
+func (Gender) EnumDescriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{0}
+}
+
+type FindUserByIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FindUserByIDRequest) Reset() {
+	*x = FindUserByIDRequest{}
+	mi := &file_userspb_userspb_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FindUserByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindUserByIDRequest) ProtoMessage() {}
+
+func (x *FindUserByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_userspb_userspb_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindUserByIDRequest.ProtoReflect.Descriptor instead.
+func (*FindUserByIDRequest) Descriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *FindUserByIDRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type FindUserByEmailRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FindUserByEmailRequest) Reset() {
+	*x = FindUserByEmailRequest{}
+	mi := &file_userspb_userspb_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FindUserByEmailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindUserByEmailRequest) ProtoMessage() {}
+
+func (x *FindUserByEmailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_userspb_userspb_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindUserByEmailRequest.ProtoReflect.Descriptor instead.
+func (*FindUserByEmailRequest) Descriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *FindUserByEmailRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
@@ -32,7 +170,7 @@ type CreateUserRequest struct {
 
 func (x *CreateUserRequest) Reset() {
 	*x = CreateUserRequest{}
-	mi := &file_userspb_userspb_proto_msgTypes[0]
+	mi := &file_userspb_userspb_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +182,7 @@ func (x *CreateUserRequest) String() string {
 func (*CreateUserRequest) ProtoMessage() {}
 
 func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_userspb_userspb_proto_msgTypes[0]
+	mi := &file_userspb_userspb_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +195,7 @@ func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
 func (*CreateUserRequest) Descriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{0}
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateUserRequest) GetEmail() string {
@@ -83,7 +221,7 @@ type CreateUserResponse struct {
 
 func (x *CreateUserResponse) Reset() {
 	*x = CreateUserResponse{}
-	mi := &file_userspb_userspb_proto_msgTypes[1]
+	mi := &file_userspb_userspb_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +233,7 @@ func (x *CreateUserResponse) String() string {
 func (*CreateUserResponse) ProtoMessage() {}
 
 func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_userspb_userspb_proto_msgTypes[1]
+	mi := &file_userspb_userspb_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +246,7 @@ func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
 func (*CreateUserResponse) Descriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{1}
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateUserResponse) GetId() string {
@@ -118,19 +256,245 @@ func (x *CreateUserResponse) GetId() string {
 	return ""
 }
 
+type User struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Profile       *Profile               `protobuf:"bytes,3,opt,name=profile,proto3" json:"profile,omitempty"`
+	Id            string                 `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty"`
+	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
+	Phone         *string                `protobuf:"bytes,6,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
+	PasswordHash  string                 `protobuf:"bytes,7,opt,name=password_hash,json=passwordHash,proto3" json:"password_hash,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *User) Reset() {
+	*x = User{}
+	mi := &file_userspb_userspb_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *User) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*User) ProtoMessage() {}
+
+func (x *User) ProtoReflect() protoreflect.Message {
+	mi := &file_userspb_userspb_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *User) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *User) GetProfile() *Profile {
+	if x != nil {
+		return x.Profile
+	}
+	return nil
+}
+
+func (x *User) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *User) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *User) GetPhone() string {
+	if x != nil && x.Phone != nil {
+		return *x.Phone
+	}
+	return ""
+}
+
+func (x *User) GetPasswordHash() string {
+	if x != nil {
+		return x.PasswordHash
+	}
+	return ""
+}
+
+type Profile struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	BirthDate     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty"`
+	LastName      *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
+	FirstName     *string                `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
+	MiddleName    *string                `protobuf:"bytes,5,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty"`
+	AvatarUrl     *string                `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
+	Gender        *Gender                `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.Gender,oneof" json:"gender,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Profile) Reset() {
+	*x = Profile{}
+	mi := &file_userspb_userspb_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Profile) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Profile) ProtoMessage() {}
+
+func (x *Profile) ProtoReflect() protoreflect.Message {
+	mi := &file_userspb_userspb_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Profile.ProtoReflect.Descriptor instead.
+func (*Profile) Descriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Profile) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *Profile) GetBirthDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.BirthDate
+	}
+	return nil
+}
+
+func (x *Profile) GetLastName() string {
+	if x != nil && x.LastName != nil {
+		return *x.LastName
+	}
+	return ""
+}
+
+func (x *Profile) GetFirstName() string {
+	if x != nil && x.FirstName != nil {
+		return *x.FirstName
+	}
+	return ""
+}
+
+func (x *Profile) GetMiddleName() string {
+	if x != nil && x.MiddleName != nil {
+		return *x.MiddleName
+	}
+	return ""
+}
+
+func (x *Profile) GetAvatarUrl() string {
+	if x != nil && x.AvatarUrl != nil {
+		return *x.AvatarUrl
+	}
+	return ""
+}
+
+func (x *Profile) GetGender() Gender {
+	if x != nil && x.Gender != nil {
+		return *x.Gender
+	}
+	return Gender_GENDER_UNSPECIFIED
+}
+
 var File_userspb_userspb_proto protoreflect.FileDescriptor
 
 const file_userspb_userspb_proto_rawDesc = "" +
 	"\n" +
-	"\x15userspb/userspb.proto\x12\auserspb\x1a\x1bgoogle/protobuf/empty.proto\"E\n" +
+	"\x15userspb/userspb.proto\x12\auserspb\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"%\n" +
+	"\x13FindUserByIDRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\".\n" +
+	"\x16FindUserByEmailRequest\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\"E\n" +
 	"\x11CreateUserRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"$\n" +
 	"\x12CreateUserResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2T\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x98\x02\n" +
+	"\x04User\x129\n" +
+	"\n" +
+	"created_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12*\n" +
+	"\aprofile\x18\x03 \x01(\v2\x10.userspb.ProfileR\aprofile\x12\x0e\n" +
+	"\x02id\x18\x04 \x01(\tR\x02id\x12\x14\n" +
+	"\x05email\x18\x05 \x01(\tR\x05email\x12\x19\n" +
+	"\x05phone\x18\x06 \x01(\tH\x00R\x05phone\x88\x01\x01\x12#\n" +
+	"\rpassword_hash\x18\a \x01(\tR\fpasswordHashB\b\n" +
+	"\x06_phone\"\x98\x03\n" +
+	"\aProfile\x129\n" +
+	"\n" +
+	"updated_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
+	"\n" +
+	"birth_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tbirthDate\x88\x01\x01\x12 \n" +
+	"\tlast_name\x18\x03 \x01(\tH\x01R\blastName\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"first_name\x18\x04 \x01(\tH\x02R\tfirstName\x88\x01\x01\x12$\n" +
+	"\vmiddle_name\x18\x05 \x01(\tH\x03R\n" +
+	"middleName\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"avatar_url\x18\x06 \x01(\tH\x04R\tavatarUrl\x88\x01\x01\x12,\n" +
+	"\x06gender\x18\a \x01(\x0e2\x0f.userspb.GenderH\x05R\x06gender\x88\x01\x01B\r\n" +
+	"\v_birth_dateB\f\n" +
+	"\n" +
+	"_last_nameB\r\n" +
+	"\v_first_nameB\x0e\n" +
+	"\f_middle_nameB\r\n" +
+	"\v_avatar_urlB\t\n" +
+	"\a_gender*6\n" +
+	"\x06Gender\x12\x16\n" +
+	"\x12GENDER_UNSPECIFIED\x10\x00\x12\b\n" +
+	"\x04MALE\x10\x01\x12\n" +
+	"\n" +
+	"\x06FEMALE\x10\x022\xd4\x01\n" +
 	"\vUserService\x12E\n" +
 	"\n" +
-	"CreateUser\x12\x1a.userspb.CreateUserRequest\x1a\x1b.userspb.CreateUserResponseB9Z7github.com/fedotovmax/microservices-shop-protos/userspbb\x06proto3"
+	"CreateUser\x12\x1a.userspb.CreateUserRequest\x1a\x1b.userspb.CreateUserResponse\x12;\n" +
+	"\fFindUserByID\x12\x1c.userspb.FindUserByIDRequest\x1a\r.userspb.User\x12A\n" +
+	"\x0fFindUserByEmail\x12\x1f.userspb.FindUserByEmailRequest\x1a\r.userspb.UserB9Z7github.com/fedotovmax/microservices-shop-protos/userspbb\x06proto3"
 
 var (
 	file_userspb_userspb_proto_rawDescOnce sync.Once
@@ -144,19 +508,36 @@ func file_userspb_userspb_proto_rawDescGZIP() []byte {
 	return file_userspb_userspb_proto_rawDescData
 }
 
-var file_userspb_userspb_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_userspb_userspb_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_userspb_userspb_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_userspb_userspb_proto_goTypes = []any{
-	(*CreateUserRequest)(nil),  // 0: userspb.CreateUserRequest
-	(*CreateUserResponse)(nil), // 1: userspb.CreateUserResponse
+	(Gender)(0),                    // 0: userspb.Gender
+	(*FindUserByIDRequest)(nil),    // 1: userspb.FindUserByIDRequest
+	(*FindUserByEmailRequest)(nil), // 2: userspb.FindUserByEmailRequest
+	(*CreateUserRequest)(nil),      // 3: userspb.CreateUserRequest
+	(*CreateUserResponse)(nil),     // 4: userspb.CreateUserResponse
+	(*User)(nil),                   // 5: userspb.User
+	(*Profile)(nil),                // 6: userspb.Profile
+	(*timestamppb.Timestamp)(nil),  // 7: google.protobuf.Timestamp
 }
 var file_userspb_userspb_proto_depIdxs = []int32{
-	0, // 0: userspb.UserService.CreateUser:input_type -> userspb.CreateUserRequest
-	1, // 1: userspb.UserService.CreateUser:output_type -> userspb.CreateUserResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	7, // 0: userspb.User.created_at:type_name -> google.protobuf.Timestamp
+	7, // 1: userspb.User.updated_at:type_name -> google.protobuf.Timestamp
+	6, // 2: userspb.User.profile:type_name -> userspb.Profile
+	7, // 3: userspb.Profile.updated_at:type_name -> google.protobuf.Timestamp
+	7, // 4: userspb.Profile.birth_date:type_name -> google.protobuf.Timestamp
+	0, // 5: userspb.Profile.gender:type_name -> userspb.Gender
+	3, // 6: userspb.UserService.CreateUser:input_type -> userspb.CreateUserRequest
+	1, // 7: userspb.UserService.FindUserByID:input_type -> userspb.FindUserByIDRequest
+	2, // 8: userspb.UserService.FindUserByEmail:input_type -> userspb.FindUserByEmailRequest
+	4, // 9: userspb.UserService.CreateUser:output_type -> userspb.CreateUserResponse
+	5, // 10: userspb.UserService.FindUserByID:output_type -> userspb.User
+	5, // 11: userspb.UserService.FindUserByEmail:output_type -> userspb.User
+	9, // [9:12] is the sub-list for method output_type
+	6, // [6:9] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_userspb_userspb_proto_init() }
@@ -164,18 +545,21 @@ func file_userspb_userspb_proto_init() {
 	if File_userspb_userspb_proto != nil {
 		return
 	}
+	file_userspb_userspb_proto_msgTypes[4].OneofWrappers = []any{}
+	file_userspb_userspb_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_userspb_userspb_proto_rawDesc), len(file_userspb_userspb_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   2,
+			NumEnums:      1,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_userspb_userspb_proto_goTypes,
 		DependencyIndexes: file_userspb_userspb_proto_depIdxs,
+		EnumInfos:         file_userspb_userspb_proto_enumTypes,
 		MessageInfos:      file_userspb_userspb_proto_msgTypes,
 	}.Build()
 	File_userspb_userspb_proto = out.File
