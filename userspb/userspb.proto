@@ -9,7 +9,8 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/fedotovmax/microservices-shop-protos/userspb";
 
 service UserService {
-  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc CreateUser(CreateUserRequest) returns ( CreateUserResponse);
+  rpc UpdateUserProfile(UpdateUserProfileRequest) returns (google.protobuf.Empty);
   rpc FindUserByID(FindUserByIDRequest) returns (User);
   rpc FindUserByEmail(FindUserByEmailRequest) returns (User);
 }
@@ -31,6 +32,15 @@ message CreateUserResponse {
   string id = 1;
 }
 
+message UpdateUserProfileRequest {
+  optional google.protobuf.Timestamp birth_date = 1;
+  optional string last_name = 2;
+  optional string first_name = 3;
+  optional string middle_name = 4;
+  optional string avatar_url = 5;
+  optional Gender gender = 6;
+}
+
 message User {
   google.protobuf.Timestamp created_at = 1;
   google.protobuf.Timestamp updated_at = 2;
@@ -38,7 +48,6 @@ message User {
   string id = 4;
   string email = 5;
   optional string phone = 6;
-  string password_hash = 7;
 }
 
 message Profile {
