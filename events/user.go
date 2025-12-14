@@ -11,3 +11,7 @@ const USER_UPDATED = "user.updated"
 type UserCreatedEventPayload struct {
 	ID string `json:"id"`
 }
+
+type UserUpdatedEventPayload struct {
+	ID string `json:"id"`
+}
