@@ -258,7 +258,7 @@ func (x *CreateUserResponse) GetId() string {
 
 type UpdateUserProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	BirthDate     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty"`
+	BirthDate     *string                `protobuf:"bytes,1,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty"`
 	LastName      *string                `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
 	FirstName     *string                `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
 	MiddleName    *string                `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty"`
@@ -298,11 +298,11 @@ func (*UpdateUserProfileRequest) Descriptor() ([]byte, []int) {
 	return file_userspb_userspb_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *UpdateUserProfileRequest) GetBirthDate() *timestamppb.Timestamp {
-	if x != nil {
-		return x.BirthDate
+func (x *UpdateUserProfileRequest) GetBirthDate() string {
+	if x != nil && x.BirthDate != nil {
+		return *x.BirthDate
 	}
-	return nil
+	return ""
 }
 
 func (x *UpdateUserProfileRequest) GetLastName() string {
@@ -427,7 +427,7 @@ func (x *User) GetPhone() string {
 type Profile struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	BirthDate     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty"`
+	BirthDate     *string                `protobuf:"bytes,2,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty"`
 	LastName      *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
 	FirstName     *string                `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
 	MiddleName    *string                `protobuf:"bytes,5,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty"`
@@ -474,11 +474,11 @@ func (x *Profile) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Profile) GetBirthDate() *timestamppb.Timestamp {
-	if x != nil {
-		return x.BirthDate
+func (x *Profile) GetBirthDate() string {
+	if x != nil && x.BirthDate != nil {
+		return *x.BirthDate
 	}
-	return nil
+	return ""
 }
 
 func (x *Profile) GetLastName() string {
@@ -529,10 +529,10 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"$\n" +
 	"\x12CreateUserResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xee\x02\n" +
-	"\x18UpdateUserProfileRequest\x12>\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xd2\x02\n" +
+	"\x18UpdateUserProfileRequest\x12\"\n" +
 	"\n" +
-	"birth_date\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tbirthDate\x88\x01\x01\x12 \n" +
+	"birth_date\x18\x01 \x01(\tH\x00R\tbirthDate\x88\x01\x01\x12 \n" +
 	"\tlast_name\x18\x02 \x01(\tH\x01R\blastName\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"first_name\x18\x03 \x01(\tH\x02R\tfirstName\x88\x01\x01\x12$\n" +
@@ -557,12 +557,12 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"\x02id\x18\x04 \x01(\tR\x02id\x12\x14\n" +
 	"\x05email\x18\x05 \x01(\tR\x05email\x12\x19\n" +
 	"\x05phone\x18\x06 \x01(\tH\x00R\x05phone\x88\x01\x01B\b\n" +
-	"\x06_phone\"\x98\x03\n" +
+	"\x06_phone\"\xfc\x02\n" +
 	"\aProfile\x129\n" +
 	"\n" +
-	"updated_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
+	"updated_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\"\n" +
 	"\n" +
-	"birth_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tbirthDate\x88\x01\x01\x12 \n" +
+	"birth_date\x18\x02 \x01(\tH\x00R\tbirthDate\x88\x01\x01\x12 \n" +
 	"\tlast_name\x18\x03 \x01(\tH\x01R\blastName\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"first_name\x18\x04 \x01(\tH\x02R\tfirstName\x88\x01\x01\x12$\n" +
@@ -617,27 +617,25 @@ var file_userspb_userspb_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),            // 9: google.protobuf.Empty
 }
 var file_userspb_userspb_proto_depIdxs = []int32{
-	8,  // 0: userspb.UpdateUserProfileRequest.birth_date:type_name -> google.protobuf.Timestamp
-	0,  // 1: userspb.UpdateUserProfileRequest.gender:type_name -> userspb.Gender
-	8,  // 2: userspb.User.created_at:type_name -> google.protobuf.Timestamp
-	8,  // 3: userspb.User.updated_at:type_name -> google.protobuf.Timestamp
-	7,  // 4: userspb.User.profile:type_name -> userspb.Profile
-	8,  // 5: userspb.Profile.updated_at:type_name -> google.protobuf.Timestamp
-	8,  // 6: userspb.Profile.birth_date:type_name -> google.protobuf.Timestamp
-	0,  // 7: userspb.Profile.gender:type_name -> userspb.Gender
-	3,  // 8: userspb.UserService.CreateUser:input_type -> userspb.CreateUserRequest
-	5,  // 9: userspb.UserService.UpdateUserProfile:input_type -> userspb.UpdateUserProfileRequest
-	1,  // 10: userspb.UserService.FindUserByID:input_type -> userspb.FindUserByIDRequest
-	2,  // 11: userspb.UserService.FindUserByEmail:input_type -> userspb.FindUserByEmailRequest
-	4,  // 12: userspb.UserService.CreateUser:output_type -> userspb.CreateUserResponse
-	9,  // 13: userspb.UserService.UpdateUserProfile:output_type -> google.protobuf.Empty
-	6,  // 14: userspb.UserService.FindUserByID:output_type -> userspb.User
-	6,  // 15: userspb.UserService.FindUserByEmail:output_type -> userspb.User
-	12, // [12:16] is the sub-list for method output_type
-	8,  // [8:12] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	0,  // 0: userspb.UpdateUserProfileRequest.gender:type_name -> userspb.Gender
+	8,  // 1: userspb.User.created_at:type_name -> google.protobuf.Timestamp
+	8,  // 2: userspb.User.updated_at:type_name -> google.protobuf.Timestamp
+	7,  // 3: userspb.User.profile:type_name -> userspb.Profile
+	8,  // 4: userspb.Profile.updated_at:type_name -> google.protobuf.Timestamp
+	0,  // 5: userspb.Profile.gender:type_name -> userspb.Gender
+	3,  // 6: userspb.UserService.CreateUser:input_type -> userspb.CreateUserRequest
+	5,  // 7: userspb.UserService.UpdateUserProfile:input_type -> userspb.UpdateUserProfileRequest
+	1,  // 8: userspb.UserService.FindUserByID:input_type -> userspb.FindUserByIDRequest
+	2,  // 9: userspb.UserService.FindUserByEmail:input_type -> userspb.FindUserByEmailRequest
+	4,  // 10: userspb.UserService.CreateUser:output_type -> userspb.CreateUserResponse
+	9,  // 11: userspb.UserService.UpdateUserProfile:output_type -> google.protobuf.Empty
+	6,  // 12: userspb.UserService.FindUserByID:output_type -> userspb.User
+	6,  // 13: userspb.UserService.FindUserByEmail:output_type -> userspb.User
+	10, // [10:14] is the sub-list for method output_type
+	6,  // [6:10] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_userspb_userspb_proto_init() }
