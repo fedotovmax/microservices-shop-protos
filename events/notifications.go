@@ -11,4 +11,5 @@ type EmailVerifyNotificationPayload struct {
 	Title       string
 	Description string
 	Link        string
+	Locale      string
 }
