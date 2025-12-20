@@ -1,6 +1,6 @@
 # Download
 
-go get github.com/fedotovmax/microservices-shop-protos@v1.0.12
+go get github.com/fedotovmax/microservices-shop-protos@v1.0.13
 
 ## Metadata
 
