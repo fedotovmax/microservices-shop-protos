@@ -39,11 +39,11 @@ message UserSessionActionRequest {
 }
 
 enum UserSessionActionStatus {
-  UNSPECIFIED = 0;
-  DELETED = 1;
-  EMAIL_NOT_VERIFIED = 2;
-  BAD_CREDENTIALS = 3;
-  OK = 4;
+  SESSION_STATUS_UNSPECIFIED = 0;
+  SESSION_STATUS_DELETED = 1;
+  SESSION_STATUS_EMAIL_NOT_VERIFIED = 2;
+  SESSION_STATUS_BAD_CREDENTIALS = 3;
+  SESSION_STATUS_OK = 4;
 }
 
 message UserSessionActionResponse {
@@ -60,7 +60,7 @@ message UpdateUserProfileRequest {
   optional string first_name = 3;
   optional string middle_name = 4;
   optional string avatar_url = 5;
-  optional string gender = 6;
+  optional GenderValue gender_value = 6;
 }
 
 message User {
@@ -72,6 +72,18 @@ message User {
   optional string phone = 6;
 }
 
+enum GenderValue {
+  GENDER_UNSPECIFIED = 0;
+  GENDER_UNSELECTED = 1;
+  GENDER_MALE = 2;
+  GENDER_FEMALE = 3;
+}
+
+message Gender {
+  GenderValue value = 1;
+  string label = 2; 
+}
+
 message Profile {
   google.protobuf.Timestamp updated_at = 1;
   optional string birth_date = 2;
@@ -79,7 +91,7 @@ message Profile {
   optional string first_name = 4;
   optional string middle_name = 5;
   optional string avatar_url = 6;
-  string gender = 7;
+  Gender gender = 7;
 }
 
 
