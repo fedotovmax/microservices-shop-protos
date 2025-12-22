@@ -79,10 +79,6 @@ enum GenderValue {
   GENDER_FEMALE = 3;
 }
 
-message Gender {
-  GenderValue value = 1;
-  string label = 2; 
-}
 
 message Profile {
   google.protobuf.Timestamp updated_at = 1;
@@ -91,7 +87,7 @@ message Profile {
   optional string first_name = 4;
   optional string middle_name = 5;
   optional string avatar_url = 6;
-  Gender gender = 7;
+  GenderValue gender = 7;
 }
 
 
