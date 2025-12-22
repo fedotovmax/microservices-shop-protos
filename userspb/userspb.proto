@@ -43,6 +43,7 @@ enum UserSessionActionStatus {
   DELETED = 1;
   EMAIL_NOT_VERIFIED = 2;
   BAD_CREDENTIALS = 3;
+  OK = 4;
 }
 
 message UserSessionActionResponse {

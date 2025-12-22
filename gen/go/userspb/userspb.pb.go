@@ -30,6 +30,7 @@ const (
 	UserSessionActionStatus_DELETED            UserSessionActionStatus = 1
 	UserSessionActionStatus_EMAIL_NOT_VERIFIED UserSessionActionStatus = 2
 	UserSessionActionStatus_BAD_CREDENTIALS    UserSessionActionStatus = 3
+	UserSessionActionStatus_OK                 UserSessionActionStatus = 4
 )
 
 // Enum value maps for UserSessionActionStatus.
@@ -39,12 +40,14 @@ var (
 		1: "DELETED",
 		2: "EMAIL_NOT_VERIFIED",
 		3: "BAD_CREDENTIALS",
+		4: "OK",
 	}
 	UserSessionActionStatus_value = map[string]int32{
 		"UNSPECIFIED":        0,
 		"DELETED":            1,
 		"EMAIL_NOT_VERIFIED": 2,
 		"BAD_CREDENTIALS":    3,
+		"OK":                 4,
 	}
 )
 
@@ -681,12 +684,13 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"_last_nameB\r\n" +
 	"\v_first_nameB\x0e\n" +
 	"\f_middle_nameB\r\n" +
-	"\v_avatar_url*d\n" +
+	"\v_avatar_url*l\n" +
 	"\x17UserSessionActionStatus\x12\x0f\n" +
 	"\vUNSPECIFIED\x10\x00\x12\v\n" +
 	"\aDELETED\x10\x01\x12\x16\n" +
 	"\x12EMAIL_NOT_VERIFIED\x10\x02\x12\x13\n" +
-	"\x0fBAD_CREDENTIALS\x10\x032\x80\x03\n" +
+	"\x0fBAD_CREDENTIALS\x10\x03\x12\x06\n" +
+	"\x02OK\x10\x042\x80\x03\n" +
 	"\vUserService\x12E\n" +
 	"\n" +
 	"CreateUser\x12\x1a.userspb.CreateUserRequest\x1a\x1b.userspb.CreateUserResponse\x12N\n" +
