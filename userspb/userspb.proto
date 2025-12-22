@@ -13,6 +13,7 @@ service UserService {
   rpc UpdateUserProfile(UpdateUserProfileRequest) returns (google.protobuf.Empty);
   rpc FindUserByID(FindUserByIDRequest) returns (User);
   rpc FindUserByEmail(FindUserByEmailRequest) returns (User);
+  rpc UserSessionAction(UserSessionActionRequest) returns (UserSessionActionResponse);
 }
 
 message FindUserByIDRequest {
@@ -32,6 +33,24 @@ message CreateUserResponse {
   string id = 1;
 }
 
+message UserSessionActionRequest {
+  string email = 1;
+  string password = 2;
+}
+
+enum UserSessionActionStatus {
+  UNSPECIFIED = 0;
+  DELETED = 1;
+  EMAIL_NOT_VERIFIED = 2;
+  BAD_CREDENTIALS = 3;
+}
+
+message UserSessionActionResponse {
+  UserSessionActionStatus user_session_action_status = 1; 
+}
+
+
+//TODO: maybe add user_id field?
 message UpdateUserProfileRequest {
   optional string birth_date = 1;
   optional string last_name = 2;
