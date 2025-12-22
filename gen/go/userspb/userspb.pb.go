@@ -317,6 +317,8 @@ func (x *UserSessionActionRequest) GetPassword() string {
 type UserSessionActionResponse struct {
 	state                   protoimpl.MessageState  `protogen:"open.v1"`
 	UserSessionActionStatus UserSessionActionStatus `protobuf:"varint,1,opt,name=user_session_action_status,json=userSessionActionStatus,proto3,enum=userspb.UserSessionActionStatus" json:"user_session_action_status,omitempty"`
+	Email                   *string                 `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty"`
+	UserId                  *string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3,oneof" json:"user_id,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -356,6 +358,20 @@ func (x *UserSessionActionResponse) GetUserSessionActionStatus() UserSessionActi
 		return x.UserSessionActionStatus
 	}
 	return UserSessionActionStatus_UNSPECIFIED
+}
+
+func (x *UserSessionActionResponse) GetEmail() string {
+	if x != nil && x.Email != nil {
+		return *x.Email
+	}
+	return ""
+}
+
+func (x *UserSessionActionResponse) GetUserId() string {
+	if x != nil && x.UserId != nil {
+		return *x.UserId
+	}
+	return ""
 }
 
 // TODO: maybe add user_id field?
@@ -635,9 +651,14 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"L\n" +
 	"\x18UserSessionActionRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"z\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xc9\x01\n" +
 	"\x19UserSessionActionResponse\x12]\n" +
-	"\x1auser_session_action_status\x18\x01 \x01(\x0e2 .userspb.UserSessionActionStatusR\x17userSessionActionStatus\"\xc1\x02\n" +
+	"\x1auser_session_action_status\x18\x01 \x01(\x0e2 .userspb.UserSessionActionStatusR\x17userSessionActionStatus\x12\x19\n" +
+	"\x05email\x18\x02 \x01(\tH\x00R\x05email\x88\x01\x01\x12\x1c\n" +
+	"\auser_id\x18\x03 \x01(\tH\x01R\x06userId\x88\x01\x01B\b\n" +
+	"\x06_emailB\n" +
+	"\n" +
+	"\b_user_id\"\xc1\x02\n" +
 	"\x18UpdateUserProfileRequest\x12\"\n" +
 	"\n" +
 	"birth_date\x18\x01 \x01(\tH\x00R\tbirthDate\x88\x01\x01\x12 \n" +
@@ -755,6 +776,7 @@ func file_userspb_userspb_proto_init() {
 	if File_userspb_userspb_proto != nil {
 		return
 	}
+	file_userspb_userspb_proto_msgTypes[5].OneofWrappers = []any{}
 	file_userspb_userspb_proto_msgTypes[6].OneofWrappers = []any{}
 	file_userspb_userspb_proto_msgTypes[7].OneofWrappers = []any{}
 	file_userspb_userspb_proto_msgTypes[8].OneofWrappers = []any{}

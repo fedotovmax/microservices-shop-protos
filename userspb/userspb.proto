@@ -48,6 +48,8 @@ enum UserSessionActionStatus {
 
 message UserSessionActionResponse {
   UserSessionActionStatus user_session_action_status = 1; 
+  optional string email = 2;
+  optional string user_id = 3;
 }
 
 
