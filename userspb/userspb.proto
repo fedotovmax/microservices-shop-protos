@@ -10,9 +10,13 @@ option go_package = "github.com/fedotovmax/microservices-shop-protos/userspb";
 
 service UserService {
   rpc CreateUser(CreateUserRequest) returns ( CreateUserResponse);
+
   rpc UpdateUserProfile(UpdateUserProfileRequest) returns (google.protobuf.Empty);
+
   rpc FindUserByID(FindUserByIDRequest) returns (User);
+
   rpc FindUserByEmail(FindUserByEmailRequest) returns (User);
+
   rpc UserSessionAction(UserSessionActionRequest) returns (UserSessionActionResponse);
 }
 
@@ -52,16 +56,18 @@ message UserSessionActionResponse {
   optional string user_id = 3;
 }
 
-
-//TODO: maybe add user_id field?
-message UpdateUserProfileRequest {
+message UpdateUserProfileData {
   optional string birth_date = 1;
   optional string last_name = 2;
   optional string first_name = 3;
   optional string middle_name = 4;
   optional string avatar_url = 5;
   optional GenderValue gender_value = 6;
-  string user_id = 7;
+}
+
+message UpdateUserProfileRequest {
+  string user_id = 1;
+  UpdateUserProfileData data = 2;
 }
 
 message User {
