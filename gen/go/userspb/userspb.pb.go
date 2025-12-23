@@ -435,6 +435,7 @@ type UpdateUserProfileRequest struct {
 	MiddleName    *string                `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty"`
 	AvatarUrl     *string                `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
 	GenderValue   *GenderValue           `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty"`
+	UserId        string                 `protobuf:"bytes,7,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -509,6 +510,13 @@ func (x *UpdateUserProfileRequest) GetGenderValue() GenderValue {
 		return *x.GenderValue
 	}
 	return GenderValue_GENDER_UNSPECIFIED
+}
+
+func (x *UpdateUserProfileRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
 }
 
 type User struct {
@@ -710,7 +718,7 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"\auser_id\x18\x03 \x01(\tH\x01R\x06userId\x88\x01\x01B\b\n" +
 	"\x06_emailB\n" +
 	"\n" +
-	"\b_user_id\"\xe8\x02\n" +
+	"\b_user_id\"\x81\x03\n" +
 	"\x18UpdateUserProfileRequest\x12\"\n" +
 	"\n" +
 	"birth_date\x18\x01 \x01(\tH\x00R\tbirthDate\x88\x01\x01\x12 \n" +
@@ -721,7 +729,8 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"middleName\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"avatar_url\x18\x05 \x01(\tH\x04R\tavatarUrl\x88\x01\x01\x12<\n" +
-	"\fgender_value\x18\x06 \x01(\x0e2\x14.userspb.GenderValueH\x05R\vgenderValue\x88\x01\x01B\r\n" +
+	"\fgender_value\x18\x06 \x01(\x0e2\x14.userspb.GenderValueH\x05R\vgenderValue\x88\x01\x01\x12\x17\n" +
+	"\auser_id\x18\a \x01(\tR\x06userIdB\r\n" +
 	"\v_birth_dateB\f\n" +
 	"\n" +
 	"_last_nameB\r\n" +
