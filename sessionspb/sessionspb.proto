@@ -2,8 +2,27 @@ syntax = "proto3";
 
 package sessionspb;
 
-import "validate/validate.proto";
 
 import "google/protobuf/empty.proto";
 
 option go_package = "github.com/fedotovmax/microservices-shop-protos/sessionspb";
+
+
+service SessionsService {
+  rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
+}
+
+
+message CreateSessionRequest {
+  string uid = 1;
+  string userAgent = 2;
+  string ip = 3;
+  string issuer = 4;
+}
+
+message CreateSessionResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+  google.protobuf.Timestamp access_exp_time = 3;
+  google.protobuf.Timestamp refresh_exp_time = 4;
+}
