@@ -22,6 +22,102 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type VerifyAccessTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	Issuer        string                 `protobuf:"bytes,2,opt,name=issuer,proto3" json:"issuer,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyAccessTokenRequest) Reset() {
+	*x = VerifyAccessTokenRequest{}
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyAccessTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyAccessTokenRequest) ProtoMessage() {}
+
+func (x *VerifyAccessTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyAccessTokenRequest.ProtoReflect.Descriptor instead.
+func (*VerifyAccessTokenRequest) Descriptor() ([]byte, []int) {
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *VerifyAccessTokenRequest) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *VerifyAccessTokenRequest) GetIssuer() string {
+	if x != nil {
+		return x.Issuer
+	}
+	return ""
+}
+
+type VerifyAccessTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyAccessTokenResponse) Reset() {
+	*x = VerifyAccessTokenResponse{}
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyAccessTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyAccessTokenResponse) ProtoMessage() {}
+
+func (x *VerifyAccessTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyAccessTokenResponse.ProtoReflect.Descriptor instead.
+func (*VerifyAccessTokenResponse) Descriptor() ([]byte, []int) {
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *VerifyAccessTokenResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
 type CreateSessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
@@ -34,7 +130,7 @@ type CreateSessionRequest struct {
 
 func (x *CreateSessionRequest) Reset() {
 	*x = CreateSessionRequest{}
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[0]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +142,7 @@ func (x *CreateSessionRequest) String() string {
 func (*CreateSessionRequest) ProtoMessage() {}
 
 func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[0]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +155,7 @@ func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionRequest.ProtoReflect.Descriptor instead.
 func (*CreateSessionRequest) Descriptor() ([]byte, []int) {
-	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{0}
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateSessionRequest) GetUid() string {
@@ -102,7 +198,7 @@ type CreateSessionResponse struct {
 
 func (x *CreateSessionResponse) Reset() {
 	*x = CreateSessionResponse{}
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[1]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114,7 +210,7 @@ func (x *CreateSessionResponse) String() string {
 func (*CreateSessionResponse) ProtoMessage() {}
 
 func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[1]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -127,7 +223,7 @@ func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionResponse.ProtoReflect.Descriptor instead.
 func (*CreateSessionResponse) Descriptor() ([]byte, []int) {
-	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{1}
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateSessionResponse) GetAccessToken() string {
@@ -163,7 +259,12 @@ var File_sessionspb_sessionspb_proto protoreflect.FileDescriptor
 const file_sessionspb_sessionspb_proto_rawDesc = "" +
 	"\n" +
 	"\x1bsessionspb/sessionspb.proto\x12\n" +
-	"sessionspb\x1a\x1fgoogle/protobuf/timestamp.proto\"n\n" +
+	"sessionspb\x1a\x1fgoogle/protobuf/timestamp.proto\"U\n" +
+	"\x18VerifyAccessTokenRequest\x12!\n" +
+	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12\x16\n" +
+	"\x06issuer\x18\x02 \x01(\tR\x06issuer\"4\n" +
+	"\x19VerifyAccessTokenResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"n\n" +
 	"\x14CreateSessionRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1c\n" +
 	"\tuserAgent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
@@ -173,9 +274,10 @@ const file_sessionspb_sessionspb_proto_rawDesc = "" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12B\n" +
 	"\x0faccess_exp_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\raccessExpTime\x12D\n" +
-	"\x10refresh_exp_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x0erefreshExpTime2g\n" +
+	"\x10refresh_exp_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x0erefreshExpTime2\xc9\x01\n" +
 	"\x0fSessionsService\x12T\n" +
-	"\rCreateSession\x12 .sessionspb.CreateSessionRequest\x1a!.sessionspb.CreateSessionResponseB<Z:github.com/fedotovmax/microservices-shop-protos/sessionspbb\x06proto3"
+	"\rCreateSession\x12 .sessionspb.CreateSessionRequest\x1a!.sessionspb.CreateSessionResponse\x12`\n" +
+	"\x11VerifyAccessToken\x12$.sessionspb.VerifyAccessTokenRequest\x1a%.sessionspb.VerifyAccessTokenResponseB<Z:github.com/fedotovmax/microservices-shop-protos/sessionspbb\x06proto3"
 
 var (
 	file_sessionspb_sessionspb_proto_rawDescOnce sync.Once
@@ -189,19 +291,23 @@ func file_sessionspb_sessionspb_proto_rawDescGZIP() []byte {
 	return file_sessionspb_sessionspb_proto_rawDescData
 }
 
-var file_sessionspb_sessionspb_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_sessionspb_sessionspb_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_sessionspb_sessionspb_proto_goTypes = []any{
-	(*CreateSessionRequest)(nil),  // 0: sessionspb.CreateSessionRequest
-	(*CreateSessionResponse)(nil), // 1: sessionspb.CreateSessionResponse
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*VerifyAccessTokenRequest)(nil),  // 0: sessionspb.VerifyAccessTokenRequest
+	(*VerifyAccessTokenResponse)(nil), // 1: sessionspb.VerifyAccessTokenResponse
+	(*CreateSessionRequest)(nil),      // 2: sessionspb.CreateSessionRequest
+	(*CreateSessionResponse)(nil),     // 3: sessionspb.CreateSessionResponse
+	(*timestamppb.Timestamp)(nil),     // 4: google.protobuf.Timestamp
 }
 var file_sessionspb_sessionspb_proto_depIdxs = []int32{
-	2, // 0: sessionspb.CreateSessionResponse.access_exp_time:type_name -> google.protobuf.Timestamp
-	2, // 1: sessionspb.CreateSessionResponse.refresh_exp_time:type_name -> google.protobuf.Timestamp
-	0, // 2: sessionspb.SessionsService.CreateSession:input_type -> sessionspb.CreateSessionRequest
-	1, // 3: sessionspb.SessionsService.CreateSession:output_type -> sessionspb.CreateSessionResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
+	4, // 0: sessionspb.CreateSessionResponse.access_exp_time:type_name -> google.protobuf.Timestamp
+	4, // 1: sessionspb.CreateSessionResponse.refresh_exp_time:type_name -> google.protobuf.Timestamp
+	2, // 2: sessionspb.SessionsService.CreateSession:input_type -> sessionspb.CreateSessionRequest
+	0, // 3: sessionspb.SessionsService.VerifyAccessToken:input_type -> sessionspb.VerifyAccessTokenRequest
+	3, // 4: sessionspb.SessionsService.CreateSession:output_type -> sessionspb.CreateSessionResponse
+	1, // 5: sessionspb.SessionsService.VerifyAccessToken:output_type -> sessionspb.VerifyAccessTokenResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -218,7 +324,7 @@ func file_sessionspb_sessionspb_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sessionspb_sessionspb_proto_rawDesc), len(file_sessionspb_sessionspb_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
