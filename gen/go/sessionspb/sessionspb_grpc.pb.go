@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	SessionsService_CreateSession_FullMethodName     = "/sessionspb.SessionsService/CreateSession"
 	SessionsService_VerifyAccessToken_FullMethodName = "/sessionspb.SessionsService/VerifyAccessToken"
+	SessionsService_RefreshSession_FullMethodName    = "/sessionspb.SessionsService/RefreshSession"
 )
 
 // SessionsServiceClient is the client API for SessionsService service.
@@ -29,6 +30,7 @@ const (
 type SessionsServiceClient interface {
 	CreateSession(ctx context.Context, in *CreateSessionRequest, opts ...grpc.CallOption) (*CreateSessionResponse, error)
 	VerifyAccessToken(ctx context.Context, in *VerifyAccessTokenRequest, opts ...grpc.CallOption) (*VerifyAccessTokenResponse, error)
+	RefreshSession(ctx context.Context, in *RefreshSessionRequest, opts ...grpc.CallOption) (*CreateSessionResponse, error)
 }
 
 type sessionsServiceClient struct {
@@ -59,12 +61,23 @@ func (c *sessionsServiceClient) VerifyAccessToken(ctx context.Context, in *Verif
 	return out, nil
 }
 
+func (c *sessionsServiceClient) RefreshSession(ctx context.Context, in *RefreshSessionRequest, opts ...grpc.CallOption) (*CreateSessionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateSessionResponse)
+	err := c.cc.Invoke(ctx, SessionsService_RefreshSession_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SessionsServiceServer is the server API for SessionsService service.
 // All implementations must embed UnimplementedSessionsServiceServer
 // for forward compatibility.
 type SessionsServiceServer interface {
 	CreateSession(context.Context, *CreateSessionRequest) (*CreateSessionResponse, error)
 	VerifyAccessToken(context.Context, *VerifyAccessTokenRequest) (*VerifyAccessTokenResponse, error)
+	RefreshSession(context.Context, *RefreshSessionRequest) (*CreateSessionResponse, error)
 	mustEmbedUnimplementedSessionsServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedSessionsServiceServer) CreateSession(context.Context, *Create
 }
 func (UnimplementedSessionsServiceServer) VerifyAccessToken(context.Context, *VerifyAccessTokenRequest) (*VerifyAccessTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyAccessToken not implemented")
+}
+func (UnimplementedSessionsServiceServer) RefreshSession(context.Context, *RefreshSessionRequest) (*CreateSessionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshSession not implemented")
 }
 func (UnimplementedSessionsServiceServer) mustEmbedUnimplementedSessionsServiceServer() {}
 func (UnimplementedSessionsServiceServer) testEmbeddedByValue()                         {}
@@ -138,6 +154,24 @@ func _SessionsService_VerifyAccessToken_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SessionsService_RefreshSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshSessionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionsServiceServer).RefreshSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SessionsService_RefreshSession_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionsServiceServer).RefreshSession(ctx, req.(*RefreshSessionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SessionsService_ServiceDesc is the grpc.ServiceDesc for SessionsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var SessionsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VerifyAccessToken",
 			Handler:    _SessionsService_VerifyAccessToken_Handler,
+		},
+		{
+			MethodName: "RefreshSession",
+			Handler:    _SessionsService_RefreshSession_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
