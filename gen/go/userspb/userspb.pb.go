@@ -81,14 +81,10 @@ func (UserSessionActionStatus) EnumDescriptor() ([]byte, []int) {
 type GenderValue int32
 
 const (
-	// 0 is invalid value for gender, do not use!
 	GenderValue_GENDER_UNSPECIFIED GenderValue = 0
-	// 1 is unselected gender, default for new user
-	GenderValue_GENDER_UNSELECTED GenderValue = 1
-	// 2 is male gender
-	GenderValue_GENDER_MALE GenderValue = 2
-	// 3 is female gender
-	GenderValue_GENDER_FEMALE GenderValue = 3
+	GenderValue_GENDER_UNSELECTED  GenderValue = 1
+	GenderValue_GENDER_MALE        GenderValue = 2
+	GenderValue_GENDER_FEMALE      GenderValue = 3
 )
 
 // Enum value maps for GenderValue.
@@ -437,7 +433,7 @@ type UpdateUserProfileData struct {
 	FirstName     *string                `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty" validate:"optional" example:"Ivan"`                                  
 	MiddleName    *string                `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty" validate:"optional" example:"Olegovich"`                               
 	AvatarUrl     *string                `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty" validate:"optional" example:"/avatars/photo.jpg"`                                  
-	GenderValue   *GenderValue           `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty" validate:"optional" example:"1"`  
+	GenderValue   *GenderValue           `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty" validate:"optional" example:"GENDER_UNSPECIFIED = 0; Reserved for Proto, not a valid value; GENDER_UNSELECTED = 1; User has not selected a gender; GENDER_MALE = 2; Represents male gender; GENDER_FEMALE = 3; Represents female gender;"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -658,7 +654,7 @@ type Profile struct {
 	FirstName     *string                `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty" validate:"optional" example:"Ivan"`     
 	MiddleName    *string                `protobuf:"bytes,5,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty" validate:"optional" example:"Olegovich"`  
 	AvatarUrl     *string                `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty" validate:"optional" example:"/avatars/photo.jpg"`     
-	Gender        GenderValue            `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.GenderValue" json:"gender,omitempty" validate:"required" example:"1"`        
+	Gender        GenderValue            `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.GenderValue" json:"gender,omitempty" validate:"required" example:"GENDER_UNSPECIFIED = 0; Reserved for Proto, not a valid value; GENDER_UNSELECTED = 1; User has not selected a gender; GENDER_MALE = 2; Represents male gender; GENDER_FEMALE = 3; Represents female gender;"`        
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

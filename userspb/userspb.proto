@@ -62,7 +62,7 @@ message UpdateUserProfileData {
   optional string first_name = 3; // @gotags: validate:"optional" example:"Ivan"
   optional string middle_name = 4; // @gotags: validate:"optional" example:"Olegovich"
   optional string avatar_url = 5; // @gotags: validate:"optional" example:"/avatars/photo.jpg"
-  optional GenderValue gender_value = 6;// @gotags: validate:"optional" example:"1"
+  optional GenderValue gender_value = 6;// @gotags: validate:"optional" example:"GENDER_UNSPECIFIED = 0; Reserved for Proto, not a valid value; GENDER_UNSELECTED = 1; User has not selected a gender; GENDER_MALE = 2; Represents male gender; GENDER_FEMALE = 3; Represents female gender;"
 }
 
 message UpdateUserProfileRequest {
@@ -80,13 +80,9 @@ message User {
 }
 
 enum GenderValue {
-  // 0 is invalid value for gender, do not use!
   GENDER_UNSPECIFIED = 0;
-  // 1 is unselected gender, default for new user
   GENDER_UNSELECTED = 1;
-  // 2 is male gender
   GENDER_MALE = 2;
-  // 3 is female gender
   GENDER_FEMALE = 3;
 }
 
@@ -98,5 +94,5 @@ message Profile {
   optional string first_name = 4; // @gotags: validate:"optional" example:"Ivan"
   optional string middle_name = 5; // @gotags: validate:"optional" example:"Olegovich"
   optional string avatar_url = 6; // @gotags: validate:"optional" example:"/avatars/photo.jpg"
-  GenderValue gender = 7; // @gotags: validate:"required" example:"1"
+  GenderValue gender = 7; // @gotags: validate:"required" example:"GENDER_UNSPECIFIED = 0; Reserved for Proto, not a valid value; GENDER_UNSELECTED = 1; User has not selected a gender; GENDER_MALE = 2; Represents male gender; GENDER_FEMALE = 3; Represents female gender;"
 }
