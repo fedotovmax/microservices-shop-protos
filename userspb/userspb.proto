@@ -21,25 +21,25 @@ service UserService {
 }
 
 message FindUserByIDRequest {
-  string id = 1;
+  string id = 1; // @gotags: validate:"required" format:"uuid"
 }
 
 message FindUserByEmailRequest {
-  string email = 1;
+  string email = 1; // @gotags: example:"makc-dgek@mail.ru" validate:"required" format:"email"
 }
 
 message CreateUserRequest {
-  string email = 1;
-  string password = 2;
+  string email = 1; // @gotags: example:"makc-dgek@mail.ru" validate:"required" format:"email"
+  string password = 2; // @gotags: validate:"required"
 }
 
 message CreateUserResponse {
-  string id = 1;
+  string id = 1; // @gotags: validate:"required" format:"uuid"
 }
 
 message UserSessionActionRequest {
-  string email = 1;
-  string password = 2;
+  string email = 1; // @gotags: example:"makc-dgek@mail.ru" validate:"required" format:"email"
+  string password = 2; // @gotags: validate:"required"
 }
 
 enum UserSessionActionStatus {
@@ -51,51 +51,52 @@ enum UserSessionActionStatus {
 }
 
 message UserSessionActionResponse {
-  UserSessionActionStatus user_session_action_status = 1; 
-  optional string email = 2;
-  optional string user_id = 3;
+  UserSessionActionStatus user_session_action_status = 1; // @gotags: validate:"required"
+  optional string email = 2; // @gotags: validate:"optional" format:"email"
+  optional string user_id = 3; // @gotags: validate:"optional" format:"uuid"
 }
 
 message UpdateUserProfileData {
-  optional string birth_date = 1;
-  optional string last_name = 2;
-  optional string first_name = 3;
-  optional string middle_name = 4;
-  optional string avatar_url = 5;
-  optional GenderValue gender_value = 6;
+  optional string birth_date = 1; // @gotags: validate:"optional" example:"2001-11-23"
+  optional string last_name = 2; // @gotags: validate:"optional" example:"Ivanov"
+  optional string first_name = 3; // @gotags: validate:"optional" example:"Ivan"
+  optional string middle_name = 4; // @gotags: validate:"optional" example:"Olegovich"
+  optional string avatar_url = 5; // @gotags: validate:"optional" example:"https://example.com/photo.jpg" format:"url" 
+  optional GenderValue gender_value = 6;// @gotags: validate:"optional" example:"1"
 }
 
 message UpdateUserProfileRequest {
-  string user_id = 1;
+  string user_id = 1; // @gotags: validate:"required" format:"uuid"
   UpdateUserProfileData data = 2;
 }
 
 message User {
-  google.protobuf.Timestamp created_at = 1;
-  google.protobuf.Timestamp updated_at = 2;
+  google.protobuf.Timestamp created_at = 1; // @gotags: validate:"required"
+  google.protobuf.Timestamp updated_at = 2; // @gotags: validate:"required"
   Profile profile = 3;
-  string id = 4;
-  string email = 5;
-  optional string phone = 6;
+  string id = 4; // @gotags: validate:"required" format:"uuid"
+  string email = 5; // @gotags: example:"makc-dgek@mail.ru" validate:"required" format:"email"
+  optional string phone = 6; // @gotags: example:"+79517735133" validate:"optional"
 }
 
 enum GenderValue {
+  // @gotags: example:"0 is invalid value, not to use"
   GENDER_UNSPECIFIED = 0;
+  // @gotags: example:"1 it is means <unselected gender>,default value for new user"
   GENDER_UNSELECTED = 1;
+  // @gotags: example:"2 it is means <male gender>"
   GENDER_MALE = 2;
+  // @gotags: example:"3 it is means <female gender>"
   GENDER_FEMALE = 3;
 }
 
 
 message Profile {
-  google.protobuf.Timestamp updated_at = 1;
-  optional string birth_date = 2;
-  optional string last_name = 3;
-  optional string first_name = 4;
-  optional string middle_name = 5;
-  optional string avatar_url = 6;
-  GenderValue gender = 7;
+  google.protobuf.Timestamp updated_at = 1; // @gotags: validate:"required"
+  optional string birth_date = 2; // @gotags: validate:"optional" example:"2001-11-23"
+  optional string last_name = 3; // @gotags: validate:"optional" example:"Ivanov"
+  optional string first_name = 4; // @gotags: validate:"optional" example:"Ivan"
+  optional string middle_name = 5; // @gotags: validate:"optional" example:"Olegovich"
+  optional string avatar_url = 6; // @gotags: validate:"optional" example:"https://example.com/photo.jpg" format:"url" 
+  GenderValue gender = 7; // @gotags: validate:"required" example:"1"
 }
-
-
-

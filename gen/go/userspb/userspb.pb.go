@@ -81,10 +81,14 @@ func (UserSessionActionStatus) EnumDescriptor() ([]byte, []int) {
 type GenderValue int32
 
 const (
+	// @gotags: example:"0 is invalid value, not to use"
 	GenderValue_GENDER_UNSPECIFIED GenderValue = 0
-	GenderValue_GENDER_UNSELECTED  GenderValue = 1
-	GenderValue_GENDER_MALE        GenderValue = 2
-	GenderValue_GENDER_FEMALE      GenderValue = 3
+	// @gotags: example:"1 it is means <unselected gender>,default value for new user"
+	GenderValue_GENDER_UNSELECTED GenderValue = 1
+	// @gotags: example:"2 it is means <male gender>"
+	GenderValue_GENDER_MALE GenderValue = 2
+	// @gotags: example:"3 it is means <female gender>"
+	GenderValue_GENDER_FEMALE GenderValue = 3
 )
 
 // Enum value maps for GenderValue.
@@ -132,7 +136,7 @@ func (GenderValue) EnumDescriptor() ([]byte, []int) {
 
 type FindUserByIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" validate:"required" format:"uuid"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -176,7 +180,7 @@ func (x *FindUserByIDRequest) GetId() string {
 
 type FindUserByEmailRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" example:"makc-dgek@mail.ru" validate:"required" format:"email"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -220,8 +224,8 @@ func (x *FindUserByEmailRequest) GetEmail() string {
 
 type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" example:"makc-dgek@mail.ru" validate:"required" format:"email"`        
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty" validate:"required"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -272,7 +276,7 @@ func (x *CreateUserRequest) GetPassword() string {
 
 type CreateUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" validate:"required" format:"uuid"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -316,8 +320,8 @@ func (x *CreateUserResponse) GetId() string {
 
 type UserSessionActionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" example:"makc-dgek@mail.ru" validate:"required" format:"email"`        
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty" validate:"required"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -368,9 +372,9 @@ func (x *UserSessionActionRequest) GetPassword() string {
 
 type UserSessionActionResponse struct {
 	state                   protoimpl.MessageState  `protogen:"open.v1"`
-	UserSessionActionStatus UserSessionActionStatus `protobuf:"varint,1,opt,name=user_session_action_status,json=userSessionActionStatus,proto3,enum=userspb.UserSessionActionStatus" json:"user_session_action_status,omitempty"`
-	Email                   *string                 `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty"`
-	UserId                  *string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3,oneof" json:"user_id,omitempty"`
+	UserSessionActionStatus UserSessionActionStatus `protobuf:"varint,1,opt,name=user_session_action_status,json=userSessionActionStatus,proto3,enum=userspb.UserSessionActionStatus" json:"user_session_action_status,omitempty" validate:"required"`  
+	Email                   *string                 `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty" validate:"optional" format:"email"`                                                                                                         
+	UserId                  *string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3,oneof" json:"user_id,omitempty" validate:"optional" format:"uuid"`                                                                                         
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -428,12 +432,12 @@ func (x *UserSessionActionResponse) GetUserId() string {
 
 type UpdateUserProfileData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	BirthDate     *string                `protobuf:"bytes,1,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty"`
-	LastName      *string                `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	FirstName     *string                `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
-	MiddleName    *string                `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty"`
-	AvatarUrl     *string                `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
-	GenderValue   *GenderValue           `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty"`
+	BirthDate     *string                `protobuf:"bytes,1,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty" validate:"optional" example:"2001-11-23"`                                  
+	LastName      *string                `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty" validate:"optional" example:"Ivanov"`                                     
+	FirstName     *string                `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty" validate:"optional" example:"Ivan"`                                  
+	MiddleName    *string                `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty" validate:"optional" example:"Olegovich"`                               
+	AvatarUrl     *string                `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty" validate:"optional" example:"https://example.com/photo.jpg" format:"url"`                                  
+	GenderValue   *GenderValue           `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty" validate:"optional" example:"1"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -512,7 +516,7 @@ func (x *UpdateUserProfileData) GetGenderValue() GenderValue {
 
 type UpdateUserProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" validate:"required" format:"uuid"`  
 	Data          *UpdateUserProfileData `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -564,12 +568,12 @@ func (x *UpdateUserProfileRequest) GetData() *UpdateUserProfileData {
 
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty" validate:"required"`  
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty" validate:"required"`  
 	Profile       *Profile               `protobuf:"bytes,3,opt,name=profile,proto3" json:"profile,omitempty"`
-	Id            string                 `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty"`
-	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
-	Phone         *string                `protobuf:"bytes,6,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
+	Id            string                 `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty" validate:"required" format:"uuid"`              
+	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty" example:"makc-dgek@mail.ru" validate:"required" format:"email"`        
+	Phone         *string                `protobuf:"bytes,6,opt,name=phone,proto3,oneof" json:"phone,omitempty" example:"+79517735133" validate:"optional"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -648,13 +652,13 @@ func (x *User) GetPhone() string {
 
 type Profile struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	BirthDate     *string                `protobuf:"bytes,2,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty"`
-	LastName      *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	FirstName     *string                `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
-	MiddleName    *string                `protobuf:"bytes,5,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty"`
-	AvatarUrl     *string                `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
-	Gender        GenderValue            `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.GenderValue" json:"gender,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty" validate:"required"`           
+	BirthDate     *string                `protobuf:"bytes,2,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty" validate:"optional" example:"2001-11-23"`     
+	LastName      *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty" validate:"optional" example:"Ivanov"`        
+	FirstName     *string                `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty" validate:"optional" example:"Ivan"`     
+	MiddleName    *string                `protobuf:"bytes,5,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty" validate:"optional" example:"Olegovich"`  
+	AvatarUrl     *string                `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty" validate:"optional" example:"https://example.com/photo.jpg" format:"url"`     
+	Gender        GenderValue            `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.GenderValue" json:"gender,omitempty" validate:"required" example:"1"`        
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
