@@ -16,32 +16,32 @@ service SessionsService {
 
 
 message RefreshSessionRequest {
-  string refresh_token = 1;
-  string userAgent = 2;
-  string ip = 3;
-  string issuer = 4;
+  string refresh_token = 1; // @gotags: validate:"required"
+  string userAgent = 2; // @gotags: validate:"required"
+  string ip = 3; // @gotags: validate:"required" format:"ip4" example:"19.56.186.122"
+  string issuer = 4; // @gotags: validate:"required" example:"admin-controller-application.v1"
 }
 
 message VerifyAccessTokenRequest {
-  string access_token = 1;
-  string issuer = 2;
+  string access_token = 1; // @gotags: validate:"required"
+  string issuer = 2; // @gotags: validate:"required" example:"admin-controller-application.v1"
 }
 
 message VerifyAccessTokenResponse{
-  string uid = 1;
+  string uid = 1; // @gotags: validate:"required" format:"uuid"
 }
 
 
 message CreateSessionRequest {
-  string uid = 1;
-  string userAgent = 2;
-  string ip = 3;
-  string issuer = 4;
+  string uid = 1; // @gotags: validate:"required" format:"uuid"
+  string userAgent = 2;  // @gotags: validate:"required"
+  string ip = 3; // @gotags: validate:"required" format:"ip4" example:"19.56.186.122"
+  string issuer = 4; // @gotags: validate:"required" example:"admin-controller-application.v1"
 }
 
 message CreateSessionResponse {
-  string access_token = 1;
-  string refresh_token = 2;
+  string access_token = 1; // @gotags: validate:"required"
+  string refresh_token = 2; // @gotags: validate:"required"
   google.protobuf.Timestamp access_exp_time = 3;
   google.protobuf.Timestamp refresh_exp_time = 4;
 }

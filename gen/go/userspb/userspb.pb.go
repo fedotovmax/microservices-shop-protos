@@ -367,8 +367,13 @@ func (x *UserSessionActionRequest) GetPassword() string {
 }
 
 type UserSessionActionResponse struct {
-	state                   protoimpl.MessageState  `protogen:"open.v1"`
-	UserSessionActionStatus UserSessionActionStatus `protobuf:"varint,1,opt,name=user_session_action_status,json=userSessionActionStatus,proto3,enum=userspb.UserSessionActionStatus" json:"user_session_action_status,omitempty" validate:"required"`  
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// SESSION_STATUS_UNSPECIFIED = 0 Reserved for Proto, not a valid value
+	// SESSION_STATUS_DELETED = 1 User account is deleted
+	// SESSION_STATUS_EMAIL_NOT_VERIFIED = 2 User email address not verfied
+	// SESSION_STATUS_BAD_CREDENTIALS = 3 Invalid login or password
+	// SESSION_STATUS_OK = 4 Success value
+	UserSessionActionStatus UserSessionActionStatus `protobuf:"varint,1,opt,name=user_session_action_status,json=userSessionActionStatus,proto3,enum=userspb.UserSessionActionStatus" json:"user_session_action_status,omitempty" validate:"required" example:"2"`  
 	Email                   *string                 `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty" validate:"optional" format:"email"`                                                                                                         
 	UserId                  *string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3,oneof" json:"user_id,omitempty" validate:"optional" format:"uuid"`                                                                                         
 	unknownFields           protoimpl.UnknownFields

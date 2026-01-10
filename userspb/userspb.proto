@@ -51,7 +51,12 @@ enum UserSessionActionStatus {
 }
 
 message UserSessionActionResponse {
-  UserSessionActionStatus user_session_action_status = 1; // @gotags: validate:"required"
+  // SESSION_STATUS_UNSPECIFIED = 0 Reserved for Proto, not a valid value
+  // SESSION_STATUS_DELETED = 1 User account is deleted
+  // SESSION_STATUS_EMAIL_NOT_VERIFIED = 2 User email address not verfied
+  // SESSION_STATUS_BAD_CREDENTIALS = 3 Invalid login or password
+  // SESSION_STATUS_OK = 4 Success value
+  UserSessionActionStatus user_session_action_status = 1; // @gotags: validate:"required" example:"2"
   optional string email = 2; // @gotags: validate:"optional" format:"email"
   optional string user_id = 3; // @gotags: validate:"optional" format:"uuid"
 }
