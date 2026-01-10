@@ -81,13 +81,13 @@ func (UserSessionActionStatus) EnumDescriptor() ([]byte, []int) {
 type GenderValue int32
 
 const (
-	// @gotags: example:"0 is invalid value, not to use"
+	// 0 is invalid value for gender, do not use!
 	GenderValue_GENDER_UNSPECIFIED GenderValue = 0
-	// @gotags: example:"1 it is means <unselected gender>,default value for new user"
+	// 1 is unselected gender, default for new user
 	GenderValue_GENDER_UNSELECTED GenderValue = 1
-	// @gotags: example:"2 it is means <male gender>"
+	// 2 is male gender
 	GenderValue_GENDER_MALE GenderValue = 2
-	// @gotags: example:"3 it is means <female gender>"
+	// 3 is female gender
 	GenderValue_GENDER_FEMALE GenderValue = 3
 )
 

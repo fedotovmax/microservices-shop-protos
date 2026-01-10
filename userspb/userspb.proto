@@ -80,13 +80,13 @@ message User {
 }
 
 enum GenderValue {
-  // @gotags: example:"0 is invalid value, not to use"
+  // 0 is invalid value for gender, do not use!
   GENDER_UNSPECIFIED = 0;
-  // @gotags: example:"1 it is means <unselected gender>,default value for new user"
+  // 1 is unselected gender, default for new user
   GENDER_UNSELECTED = 1;
-  // @gotags: example:"2 it is means <male gender>"
+  // 2 is male gender
   GENDER_MALE = 2;
-  // @gotags: example:"3 it is means <female gender>"
+  // 3 is female gender
   GENDER_FEMALE = 3;
 }
 
