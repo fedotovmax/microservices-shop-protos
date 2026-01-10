@@ -427,13 +427,17 @@ func (x *UserSessionActionResponse) GetUserId() string {
 }
 
 type UpdateUserProfileData struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	BirthDate     *string                `protobuf:"bytes,1,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty" validate:"optional" example:"2001-11-23"`                                  
-	LastName      *string                `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty" validate:"optional" example:"Ivanov"`                                     
-	FirstName     *string                `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty" validate:"optional" example:"Ivan"`                                  
-	MiddleName    *string                `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty" validate:"optional" example:"Olegovich"`                               
-	AvatarUrl     *string                `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty" validate:"optional" example:"/avatars/photo.jpg"`                                  
-	GenderValue   *GenderValue           `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty" validate:"optional" example:"GENDER_UNSPECIFIED = 0; Reserved for Proto, not a valid value; GENDER_UNSELECTED = 1; User has not selected a gender; GENDER_MALE = 2; Represents male gender; GENDER_FEMALE = 3; Represents female gender;"`  
+	state      protoimpl.MessageState `protogen:"open.v1"`
+	BirthDate  *string                `protobuf:"bytes,1,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty" validate:"optional" example:"2001-11-23"`     
+	LastName   *string                `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty" validate:"optional" example:"Ivanov"`        
+	FirstName  *string                `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty" validate:"optional" example:"Ivan"`     
+	MiddleName *string                `protobuf:"bytes,4,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty" validate:"optional" example:"Olegovich"`  
+	AvatarUrl  *string                `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty" validate:"optional" example:"/avatars/photo.jpg"`     
+	// GENDER_UNSPECIFIED = 0 Reserved for Proto, not a valid value
+	// GENDER_UNSELECTED = 1 User has not selected a gender
+	// GENDER_MALE = 2 Represents male gender
+	// GENDER_FEMALE = 3 Represents female gender
+	GenderValue   *GenderValue `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty" validate:"optional" example:"1"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -647,14 +651,18 @@ func (x *User) GetPhone() string {
 }
 
 type Profile struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty" validate:"required"`           
-	BirthDate     *string                `protobuf:"bytes,2,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty" validate:"optional" example:"2001-11-23"`     
-	LastName      *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty" validate:"optional" example:"Ivanov"`        
-	FirstName     *string                `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty" validate:"optional" example:"Ivan"`     
-	MiddleName    *string                `protobuf:"bytes,5,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty" validate:"optional" example:"Olegovich"`  
-	AvatarUrl     *string                `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty" validate:"optional" example:"/avatars/photo.jpg"`     
-	Gender        GenderValue            `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.GenderValue" json:"gender,omitempty" validate:"required" example:"GENDER_UNSPECIFIED = 0; Reserved for Proto, not a valid value; GENDER_UNSELECTED = 1; User has not selected a gender; GENDER_MALE = 2; Represents male gender; GENDER_FEMALE = 3; Represents female gender;"`        
+	state      protoimpl.MessageState `protogen:"open.v1"`
+	UpdatedAt  *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty" validate:"required"`           
+	BirthDate  *string                `protobuf:"bytes,2,opt,name=birth_date,json=birthDate,proto3,oneof" json:"birth_date,omitempty" validate:"optional" example:"2001-11-23"`     
+	LastName   *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty" validate:"optional" example:"Ivanov"`        
+	FirstName  *string                `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty" validate:"optional" example:"Ivan"`     
+	MiddleName *string                `protobuf:"bytes,5,opt,name=middle_name,json=middleName,proto3,oneof" json:"middle_name,omitempty" validate:"optional" example:"Olegovich"`  
+	AvatarUrl  *string                `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty" validate:"optional" example:"/avatars/photo.jpg"`     
+	// GENDER_UNSPECIFIED = 0 Reserved for Proto, not a valid value
+	// GENDER_UNSELECTED = 1 User has not selected a gender
+	// GENDER_MALE = 2 Represents male gender
+	// GENDER_FEMALE = 3 Represents female gender
+	Gender        GenderValue `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.GenderValue" json:"gender,omitempty" validate:"required" example:"1"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

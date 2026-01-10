@@ -62,7 +62,12 @@ message UpdateUserProfileData {
   optional string first_name = 3; // @gotags: validate:"optional" example:"Ivan"
   optional string middle_name = 4; // @gotags: validate:"optional" example:"Olegovich"
   optional string avatar_url = 5; // @gotags: validate:"optional" example:"/avatars/photo.jpg"
-  optional GenderValue gender_value = 6;// @gotags: validate:"optional" example:"GENDER_UNSPECIFIED = 0; Reserved for Proto, not a valid value; GENDER_UNSELECTED = 1; User has not selected a gender; GENDER_MALE = 2; Represents male gender; GENDER_FEMALE = 3; Represents female gender;"
+
+  // GENDER_UNSPECIFIED = 0 Reserved for Proto, not a valid value
+  // GENDER_UNSELECTED = 1 User has not selected a gender
+  // GENDER_MALE = 2 Represents male gender
+  // GENDER_FEMALE = 3 Represents female gender
+  optional GenderValue gender_value = 6;// @gotags: validate:"optional" example:"1"
 }
 
 message UpdateUserProfileRequest {
@@ -94,5 +99,10 @@ message Profile {
   optional string first_name = 4; // @gotags: validate:"optional" example:"Ivan"
   optional string middle_name = 5; // @gotags: validate:"optional" example:"Olegovich"
   optional string avatar_url = 6; // @gotags: validate:"optional" example:"/avatars/photo.jpg"
-  GenderValue gender = 7; // @gotags: validate:"required" example:"GENDER_UNSPECIFIED = 0; Reserved for Proto, not a valid value; GENDER_UNSELECTED = 1; User has not selected a gender; GENDER_MALE = 2; Represents male gender; GENDER_FEMALE = 3; Represents female gender;"
+
+  // GENDER_UNSPECIFIED = 0 Reserved for Proto, not a valid value
+  // GENDER_UNSELECTED = 1 User has not selected a gender
+  // GENDER_MALE = 2 Represents male gender
+  // GENDER_FEMALE = 3 Represents female gender
+  GenderValue gender = 7; // @gotags: validate:"required" example:"1"
 }
