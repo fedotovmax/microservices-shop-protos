@@ -61,7 +61,7 @@ message UpdateUserProfileData {
   optional string last_name = 2; // @gotags: validate:"optional" example:"Ivanov"
   optional string first_name = 3; // @gotags: validate:"optional" example:"Ivan"
   optional string middle_name = 4; // @gotags: validate:"optional" example:"Olegovich"
-  optional string avatar_url = 5; // @gotags: validate:"optional" example:"https://example.com/photo.jpg" format:"url" 
+  optional string avatar_url = 5; // @gotags: validate:"optional" example:"/avatars/photo.jpg"
   optional GenderValue gender_value = 6;// @gotags: validate:"optional" example:"1"
 }
 
@@ -73,7 +73,7 @@ message UpdateUserProfileRequest {
 message User {
   google.protobuf.Timestamp created_at = 1; // @gotags: validate:"required"
   google.protobuf.Timestamp updated_at = 2; // @gotags: validate:"required"
-  Profile profile = 3;
+  Profile profile = 3; // @gotags: validate:"required"
   string id = 4; // @gotags: validate:"required" format:"uuid"
   string email = 5; // @gotags: example:"makc-dgek@mail.ru" validate:"required" format:"email"
   optional string phone = 6; // @gotags: example:"+79517735133" validate:"optional"
@@ -97,6 +97,6 @@ message Profile {
   optional string last_name = 3; // @gotags: validate:"optional" example:"Ivanov"
   optional string first_name = 4; // @gotags: validate:"optional" example:"Ivan"
   optional string middle_name = 5; // @gotags: validate:"optional" example:"Olegovich"
-  optional string avatar_url = 6; // @gotags: validate:"optional" example:"https://example.com/photo.jpg" format:"url" 
+  optional string avatar_url = 6; // @gotags: validate:"optional" example:"/avatars/photo.jpg"
   GenderValue gender = 7; // @gotags: validate:"required" example:"1"
 }
