@@ -27,7 +27,6 @@ type RefreshSessionRequest struct {
 	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty" validate:"required"`  
 	UserAgent     string                 `protobuf:"bytes,2,opt,name=userAgent,proto3" json:"userAgent,omitempty" validate:"required"`                            
 	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty" validate:"required" format:"ip4" example:"19.56.186.122"`                                          
-	Issuer        string                 `protobuf:"bytes,4,opt,name=issuer,proto3" json:"issuer,omitempty" validate:"required" example:"admin-controller-application.v1"`                                  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -83,122 +82,18 @@ func (x *RefreshSessionRequest) GetIp() string {
 	return ""
 }
 
-func (x *RefreshSessionRequest) GetIssuer() string {
-	if x != nil {
-		return x.Issuer
-	}
-	return ""
-}
-
-type VerifyAccessTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty" validate:"required"`  
-	Issuer        string                 `protobuf:"bytes,2,opt,name=issuer,proto3" json:"issuer,omitempty" validate:"required" example:"admin-controller-application.v1"`                               
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *VerifyAccessTokenRequest) Reset() {
-	*x = VerifyAccessTokenRequest{}
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *VerifyAccessTokenRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VerifyAccessTokenRequest) ProtoMessage() {}
-
-func (x *VerifyAccessTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VerifyAccessTokenRequest.ProtoReflect.Descriptor instead.
-func (*VerifyAccessTokenRequest) Descriptor() ([]byte, []int) {
-	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *VerifyAccessTokenRequest) GetAccessToken() string {
-	if x != nil {
-		return x.AccessToken
-	}
-	return ""
-}
-
-func (x *VerifyAccessTokenRequest) GetIssuer() string {
-	if x != nil {
-		return x.Issuer
-	}
-	return ""
-}
-
-type VerifyAccessTokenResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty" validate:"required" format:"uuid"`  
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *VerifyAccessTokenResponse) Reset() {
-	*x = VerifyAccessTokenResponse{}
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *VerifyAccessTokenResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VerifyAccessTokenResponse) ProtoMessage() {}
-
-func (x *VerifyAccessTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VerifyAccessTokenResponse.ProtoReflect.Descriptor instead.
-func (*VerifyAccessTokenResponse) Descriptor() ([]byte, []int) {
-	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *VerifyAccessTokenResponse) GetUid() string {
-	if x != nil {
-		return x.Uid
-	}
-	return ""
-}
-
 type CreateSessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty" validate:"required" format:"uuid"`              
 	UserAgent     string                 `protobuf:"bytes,2,opt,name=userAgent,proto3" json:"userAgent,omitempty" validate:"required"`  
 	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty" validate:"required" format:"ip4" example:"19.56.186.122"`                
-	Issuer        string                 `protobuf:"bytes,4,opt,name=issuer,proto3" json:"issuer,omitempty" validate:"required" example:"admin-controller-application.v1"`        
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateSessionRequest) Reset() {
 	*x = CreateSessionRequest{}
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[3]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -210,7 +105,7 @@ func (x *CreateSessionRequest) String() string {
 func (*CreateSessionRequest) ProtoMessage() {}
 
 func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[3]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -223,7 +118,7 @@ func (x *CreateSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionRequest.ProtoReflect.Descriptor instead.
 func (*CreateSessionRequest) Descriptor() ([]byte, []int) {
-	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{3}
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateSessionRequest) GetUid() string {
@@ -247,13 +142,6 @@ func (x *CreateSessionRequest) GetIp() string {
 	return ""
 }
 
-func (x *CreateSessionRequest) GetIssuer() string {
-	if x != nil {
-		return x.Issuer
-	}
-	return ""
-}
-
 type CreateSessionResponse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	AccessToken    string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty" validate:"required"`     
@@ -266,7 +154,7 @@ type CreateSessionResponse struct {
 
 func (x *CreateSessionResponse) Reset() {
 	*x = CreateSessionResponse{}
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[4]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -278,7 +166,7 @@ func (x *CreateSessionResponse) String() string {
 func (*CreateSessionResponse) ProtoMessage() {}
 
 func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[4]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +179,7 @@ func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionResponse.ProtoReflect.Descriptor instead.
 func (*CreateSessionResponse) Descriptor() ([]byte, []int) {
-	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{4}
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateSessionResponse) GetAccessToken() string {
@@ -327,30 +215,22 @@ var File_sessionspb_sessionspb_proto protoreflect.FileDescriptor
 const file_sessionspb_sessionspb_proto_rawDesc = "" +
 	"\n" +
 	"\x1bsessionspb/sessionspb.proto\x12\n" +
-	"sessionspb\x1a\x1fgoogle/protobuf/timestamp.proto\"\x82\x01\n" +
+	"sessionspb\x1a\x1fgoogle/protobuf/timestamp.proto\"j\n" +
 	"\x15RefreshSessionRequest\x12#\n" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x12\x1c\n" +
 	"\tuserAgent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
-	"\x02ip\x18\x03 \x01(\tR\x02ip\x12\x16\n" +
-	"\x06issuer\x18\x04 \x01(\tR\x06issuer\"U\n" +
-	"\x18VerifyAccessTokenRequest\x12!\n" +
-	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12\x16\n" +
-	"\x06issuer\x18\x02 \x01(\tR\x06issuer\"-\n" +
-	"\x19VerifyAccessTokenResponse\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\tR\x03uid\"n\n" +
+	"\x02ip\x18\x03 \x01(\tR\x02ip\"V\n" +
 	"\x14CreateSessionRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1c\n" +
 	"\tuserAgent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
-	"\x02ip\x18\x03 \x01(\tR\x02ip\x12\x16\n" +
-	"\x06issuer\x18\x04 \x01(\tR\x06issuer\"\xe9\x01\n" +
+	"\x02ip\x18\x03 \x01(\tR\x02ip\"\xe9\x01\n" +
 	"\x15CreateSessionResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12B\n" +
 	"\x0faccess_exp_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\raccessExpTime\x12D\n" +
-	"\x10refresh_exp_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x0erefreshExpTime2\xa1\x02\n" +
+	"\x10refresh_exp_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x0erefreshExpTime2\xbf\x01\n" +
 	"\x0fSessionsService\x12T\n" +
-	"\rCreateSession\x12 .sessionspb.CreateSessionRequest\x1a!.sessionspb.CreateSessionResponse\x12`\n" +
-	"\x11VerifyAccessToken\x12$.sessionspb.VerifyAccessTokenRequest\x1a%.sessionspb.VerifyAccessTokenResponse\x12V\n" +
+	"\rCreateSession\x12 .sessionspb.CreateSessionRequest\x1a!.sessionspb.CreateSessionResponse\x12V\n" +
 	"\x0eRefreshSession\x12!.sessionspb.RefreshSessionRequest\x1a!.sessionspb.CreateSessionResponseB<Z:github.com/fedotovmax/microservices-shop-protos/sessionspbb\x06proto3"
 
 var (
@@ -365,26 +245,22 @@ func file_sessionspb_sessionspb_proto_rawDescGZIP() []byte {
 	return file_sessionspb_sessionspb_proto_rawDescData
 }
 
-var file_sessionspb_sessionspb_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_sessionspb_sessionspb_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_sessionspb_sessionspb_proto_goTypes = []any{
-	(*RefreshSessionRequest)(nil),     // 0: sessionspb.RefreshSessionRequest
-	(*VerifyAccessTokenRequest)(nil),  // 1: sessionspb.VerifyAccessTokenRequest
-	(*VerifyAccessTokenResponse)(nil), // 2: sessionspb.VerifyAccessTokenResponse
-	(*CreateSessionRequest)(nil),      // 3: sessionspb.CreateSessionRequest
-	(*CreateSessionResponse)(nil),     // 4: sessionspb.CreateSessionResponse
-	(*timestamppb.Timestamp)(nil),     // 5: google.protobuf.Timestamp
+	(*RefreshSessionRequest)(nil), // 0: sessionspb.RefreshSessionRequest
+	(*CreateSessionRequest)(nil),  // 1: sessionspb.CreateSessionRequest
+	(*CreateSessionResponse)(nil), // 2: sessionspb.CreateSessionResponse
+	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_sessionspb_sessionspb_proto_depIdxs = []int32{
-	5, // 0: sessionspb.CreateSessionResponse.access_exp_time:type_name -> google.protobuf.Timestamp
-	5, // 1: sessionspb.CreateSessionResponse.refresh_exp_time:type_name -> google.protobuf.Timestamp
-	3, // 2: sessionspb.SessionsService.CreateSession:input_type -> sessionspb.CreateSessionRequest
-	1, // 3: sessionspb.SessionsService.VerifyAccessToken:input_type -> sessionspb.VerifyAccessTokenRequest
-	0, // 4: sessionspb.SessionsService.RefreshSession:input_type -> sessionspb.RefreshSessionRequest
-	4, // 5: sessionspb.SessionsService.CreateSession:output_type -> sessionspb.CreateSessionResponse
-	2, // 6: sessionspb.SessionsService.VerifyAccessToken:output_type -> sessionspb.VerifyAccessTokenResponse
-	4, // 7: sessionspb.SessionsService.RefreshSession:output_type -> sessionspb.CreateSessionResponse
-	5, // [5:8] is the sub-list for method output_type
-	2, // [2:5] is the sub-list for method input_type
+	3, // 0: sessionspb.CreateSessionResponse.access_exp_time:type_name -> google.protobuf.Timestamp
+	3, // 1: sessionspb.CreateSessionResponse.refresh_exp_time:type_name -> google.protobuf.Timestamp
+	1, // 2: sessionspb.SessionsService.CreateSession:input_type -> sessionspb.CreateSessionRequest
+	0, // 3: sessionspb.SessionsService.RefreshSession:input_type -> sessionspb.RefreshSessionRequest
+	2, // 4: sessionspb.SessionsService.CreateSession:output_type -> sessionspb.CreateSessionResponse
+	2, // 5: sessionspb.SessionsService.RefreshSession:output_type -> sessionspb.CreateSessionResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -401,7 +277,7 @@ func file_sessionspb_sessionspb_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sessionspb_sessionspb_proto_rawDesc), len(file_sessionspb_sessionspb_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

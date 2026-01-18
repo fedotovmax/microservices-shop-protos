@@ -10,7 +10,7 @@ option go_package = "github.com/fedotovmax/microservices-shop-protos/sessionspb"
 
 service SessionsService {
   rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
-  rpc VerifyAccessToken(VerifyAccessTokenRequest) returns (VerifyAccessTokenResponse);
+  //rpc VerifyAccessToken(VerifyAccessTokenRequest) returns (VerifyAccessTokenResponse);
   rpc RefreshSession(RefreshSessionRequest) returns (CreateSessionResponse);
 }
 
@@ -19,24 +19,24 @@ message RefreshSessionRequest {
   string refresh_token = 1; // @gotags: validate:"required"
   string userAgent = 2; // @gotags: validate:"required"
   string ip = 3; // @gotags: validate:"required" format:"ip4" example:"19.56.186.122"
-  string issuer = 4; // @gotags: validate:"required" example:"admin-controller-application.v1"
+  //string issuer = 4; // @gotags: validate:"required" example:"admin-controller-application.v1"
 }
 
-message VerifyAccessTokenRequest {
-  string access_token = 1; // @gotags: validate:"required"
-  string issuer = 2; // @gotags: validate:"required" example:"admin-controller-application.v1"
-}
+// message VerifyAccessTokenRequest {
+//   string access_token = 1; // @gotags: validate:"required"
+//   //string issuer = 2; // @gotags: validate:"required" example:"admin-controller-application.v1"
+// }
 
-message VerifyAccessTokenResponse{
-  string uid = 1; // @gotags: validate:"required" format:"uuid"
-}
+// message VerifyAccessTokenResponse{
+//   string uid = 1; // @gotags: validate:"required" format:"uuid"
+// }
 
 
 message CreateSessionRequest {
   string uid = 1; // @gotags: validate:"required" format:"uuid"
   string userAgent = 2;  // @gotags: validate:"required"
   string ip = 3; // @gotags: validate:"required" format:"ip4" example:"19.56.186.122"
-  string issuer = 4; // @gotags: validate:"required" example:"admin-controller-application.v1"
+  //string issuer = 4; // @gotags: validate:"required" example:"admin-controller-application.v1"
 }
 
 message CreateSessionResponse {
