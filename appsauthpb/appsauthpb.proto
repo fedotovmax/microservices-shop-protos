@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package appsauthpb;
+
+option go_package = "github.com/fedotovmax/microservices-shop-protos/appsauthpb";
+
+
+service AppsAuthService {
+  rpc CreateApp(CreateAppRequest) returns (CreateAppResponse);
+  rpc GetToken(GetTokenRequest) returns (GetTokenResponse);
+}
+
+
+enum ApplicationType {
+  APPLICATION_TYPE_UNSPECIFIED = 0;
+  APPLICATION_TYPE_CUSTOMER = 1;
+  APPLICATION_TYPE_PARTNER = 2;
+  APPLICATION_TYPE_ADMIN = 3;
+}
+
+message CreateAppRequest {
+  string name = 1;
+  ApplicationType application_type = 2;
+}
+
+message CreateAppResponse {
+  string secret = 1;
+}
+
+message GetTokenRequest {
+   string secret = 1;
+}
+
+message GetTokenResponse {
+   string token = 1;
+}
