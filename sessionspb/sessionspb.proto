@@ -17,7 +17,7 @@ service SessionsService {
 
 message RefreshSessionRequest {
   string refresh_token = 1; // @gotags: validate:"required"
-  string user_agent = 2; // @gotags: validate:"required"
+  string user_agent = 2; // @gotags: validate:"required" example:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
   string ip = 3; // @gotags: validate:"required" format:"ip4" example:"19.56.186.122"
   //string issuer = 4; // @gotags: validate:"required" example:"admin-controller-application.v1"
 }
@@ -34,7 +34,7 @@ message RefreshSessionRequest {
 
 message CreateSessionRequest {
   string uid = 1; // @gotags: validate:"required" format:"uuid"
-  string user_agent = 2;  // @gotags: validate:"required"
+  string user_agent = 2;  // @gotags: validate:"required" example:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"
   string ip = 3; // @gotags: validate:"required" format:"ip4" example:"19.56.186.122"
   //string issuer = 4; // @gotags: validate:"required" example:"admin-controller-application.v1"
 }
