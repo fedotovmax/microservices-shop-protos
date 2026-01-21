@@ -83,12 +83,14 @@ func (x *RefreshSessionRequest) GetIp() string {
 }
 
 type CreateSessionRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty" validate:"required" format:"uuid"`                               
-	UserAgent     string                 `protobuf:"bytes,2,opt,name=user_agent,json=userAgent,proto3" json:"user_agent,omitempty" validate:"required" example:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"`  
-	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty" validate:"required" format:"ip4" example:"19.56.186.122"`                                 
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Uid              string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty" validate:"required" format:"uuid"`                                                            
+	UserAgent        string                 `protobuf:"bytes,2,opt,name=user_agent,json=userAgent,proto3" json:"user_agent,omitempty" validate:"required" example:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36"`                               
+	Ip               string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty" validate:"required" format:"ip4" example:"19.56.186.122"`                                                              
+	BypassCode       *string                `protobuf:"bytes,4,opt,name=bypass_code,json=bypassCode,proto3,oneof" json:"bypass_code,omitempty" validate:"optional" example:"1A2B3C4D5E6F"`                      
+	DeviceTrustToken *string                `protobuf:"bytes,5,opt,name=device_trust_token,json=deviceTrustToken,proto3,oneof" json:"device_trust_token,omitempty" validate:"optional" example:"skdjfsdfsdifsdfsdf123"`  
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *CreateSessionRequest) Reset() {
@@ -138,6 +140,20 @@ func (x *CreateSessionRequest) GetUserAgent() string {
 func (x *CreateSessionRequest) GetIp() string {
 	if x != nil {
 		return x.Ip
+	}
+	return ""
+}
+
+func (x *CreateSessionRequest) GetBypassCode() string {
+	if x != nil && x.BypassCode != nil {
+		return *x.BypassCode
+	}
+	return ""
+}
+
+func (x *CreateSessionRequest) GetDeviceTrustToken() string {
+	if x != nil && x.DeviceTrustToken != nil {
+		return *x.DeviceTrustToken
 	}
 	return ""
 }
@@ -220,12 +236,17 @@ const file_sessionspb_sessionspb_proto_rawDesc = "" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x12\x1d\n" +
 	"\n" +
 	"user_agent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
-	"\x02ip\x18\x03 \x01(\tR\x02ip\"W\n" +
+	"\x02ip\x18\x03 \x01(\tR\x02ip\"\xd7\x01\n" +
 	"\x14CreateSessionRequest\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1d\n" +
 	"\n" +
 	"user_agent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
-	"\x02ip\x18\x03 \x01(\tR\x02ip\"\xe9\x01\n" +
+	"\x02ip\x18\x03 \x01(\tR\x02ip\x12$\n" +
+	"\vbypass_code\x18\x04 \x01(\tH\x00R\n" +
+	"bypassCode\x88\x01\x01\x121\n" +
+	"\x12device_trust_token\x18\x05 \x01(\tH\x01R\x10deviceTrustToken\x88\x01\x01B\x0e\n" +
+	"\f_bypass_codeB\x15\n" +
+	"\x13_device_trust_token\"\xe9\x01\n" +
 	"\x15CreateSessionResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12B\n" +
@@ -273,6 +294,7 @@ func file_sessionspb_sessionspb_proto_init() {
 	if File_sessionspb_sessionspb_proto != nil {
 		return
 	}
+	file_sessionspb_sessionspb_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
