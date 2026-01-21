@@ -25,7 +25,7 @@ const (
 type RefreshSessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty" validate:"required"`  
-	UserAgent     string                 `protobuf:"bytes,2,opt,name=userAgent,proto3" json:"userAgent,omitempty" validate:"required"`                            
+	UserAgent     string                 `protobuf:"bytes,2,opt,name=user_agent,json=userAgent,proto3" json:"user_agent,omitempty" validate:"required"`           
 	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty" validate:"required" format:"ip4" example:"19.56.186.122"`                                          
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -84,9 +84,9 @@ func (x *RefreshSessionRequest) GetIp() string {
 
 type CreateSessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty" validate:"required" format:"uuid"`              
-	UserAgent     string                 `protobuf:"bytes,2,opt,name=userAgent,proto3" json:"userAgent,omitempty" validate:"required"`  
-	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty" validate:"required" format:"ip4" example:"19.56.186.122"`                
+	Uid           string                 `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty" validate:"required" format:"uuid"`                               
+	UserAgent     string                 `protobuf:"bytes,2,opt,name=user_agent,json=userAgent,proto3" json:"user_agent,omitempty" validate:"required"`  
+	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty" validate:"required" format:"ip4" example:"19.56.186.122"`                                 
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -215,14 +215,16 @@ var File_sessionspb_sessionspb_proto protoreflect.FileDescriptor
 const file_sessionspb_sessionspb_proto_rawDesc = "" +
 	"\n" +
 	"\x1bsessionspb/sessionspb.proto\x12\n" +
-	"sessionspb\x1a\x1fgoogle/protobuf/timestamp.proto\"j\n" +
+	"sessionspb\x1a\x1fgoogle/protobuf/timestamp.proto\"k\n" +
 	"\x15RefreshSessionRequest\x12#\n" +
-	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x12\x1c\n" +
-	"\tuserAgent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
-	"\x02ip\x18\x03 \x01(\tR\x02ip\"V\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x12\x1d\n" +
+	"\n" +
+	"user_agent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
+	"\x02ip\x18\x03 \x01(\tR\x02ip\"W\n" +
 	"\x14CreateSessionRequest\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1c\n" +
-	"\tuserAgent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
+	"\x03uid\x18\x01 \x01(\tR\x03uid\x12\x1d\n" +
+	"\n" +
+	"user_agent\x18\x02 \x01(\tR\tuserAgent\x12\x0e\n" +
 	"\x02ip\x18\x03 \x01(\tR\x02ip\"\xe9\x01\n" +
 	"\x15CreateSessionResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
