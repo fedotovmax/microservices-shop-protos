@@ -37,33 +37,10 @@ message CreatedTrustToken {
   google.protobuf.Timestamp trust_token_exp_time = 2;
 }
 
-message SessionCreated {
+message CreateSessionResponse {
   string access_token = 1; // @gotags: validate:"required"
   string refresh_token = 2; // @gotags: validate:"required"
   google.protobuf.Timestamp access_exp_time = 3; // @gotags: validate:"required"
   google.protobuf.Timestamp refresh_exp_time = 4; // @gotags: validate:"required"
   optional CreatedTrustToken trust_token = 5; // @gotags: validate:"optional"
-}
-
-message UserInBlacklist {
-  string message = 1;
-  google.protobuf.Timestamp link_expires_at = 2;
-}
-
-message BadBypassCode {
-  string message = 1;
-}
-
-message LoginFromNewDeviceOrIP {
-  string message = 1;
-  google.protobuf.Timestamp code_expires_at = 2;
-}
-
-message CreateSessionResponse {
-  oneof payload {
-    SessionCreated session_created = 1;
-    UserInBlacklist user_in_blacklist = 2;
-    BadBypassCode bad_bypass_code = 3;
-    LoginFromNewDeviceOrIP login_from_new_device = 4;
-  }
 }

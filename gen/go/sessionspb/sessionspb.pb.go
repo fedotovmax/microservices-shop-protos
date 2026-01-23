@@ -210,7 +210,7 @@ func (x *CreatedTrustToken) GetTrustTokenExpTime() *timestamppb.Timestamp {
 	return nil
 }
 
-type CreateSessionResponse struct {
+type SessionCreated struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	AccessToken    string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty" validate:"required"`             
 	RefreshToken   string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty" validate:"required"`          
@@ -221,9 +221,235 @@ type CreateSessionResponse struct {
 	sizeCache      protoimpl.SizeCache
 }
 
+func (x *SessionCreated) Reset() {
+	*x = SessionCreated{}
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SessionCreated) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SessionCreated) ProtoMessage() {}
+
+func (x *SessionCreated) ProtoReflect() protoreflect.Message {
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SessionCreated.ProtoReflect.Descriptor instead.
+func (*SessionCreated) Descriptor() ([]byte, []int) {
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *SessionCreated) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *SessionCreated) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *SessionCreated) GetAccessExpTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AccessExpTime
+	}
+	return nil
+}
+
+func (x *SessionCreated) GetRefreshExpTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RefreshExpTime
+	}
+	return nil
+}
+
+func (x *SessionCreated) GetTrustToken() *CreatedTrustToken {
+	if x != nil {
+		return x.TrustToken
+	}
+	return nil
+}
+
+type UserInBlacklist struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	LinkExpiresAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=link_expires_at,json=linkExpiresAt,proto3" json:"link_expires_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserInBlacklist) Reset() {
+	*x = UserInBlacklist{}
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserInBlacklist) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserInBlacklist) ProtoMessage() {}
+
+func (x *UserInBlacklist) ProtoReflect() protoreflect.Message {
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserInBlacklist.ProtoReflect.Descriptor instead.
+func (*UserInBlacklist) Descriptor() ([]byte, []int) {
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UserInBlacklist) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *UserInBlacklist) GetLinkExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LinkExpiresAt
+	}
+	return nil
+}
+
+type BadBypassCode struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BadBypassCode) Reset() {
+	*x = BadBypassCode{}
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BadBypassCode) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BadBypassCode) ProtoMessage() {}
+
+func (x *BadBypassCode) ProtoReflect() protoreflect.Message {
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BadBypassCode.ProtoReflect.Descriptor instead.
+func (*BadBypassCode) Descriptor() ([]byte, []int) {
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *BadBypassCode) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type LoginFromNewDeviceOrIP struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	CodeExpiresAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=code_expires_at,json=codeExpiresAt,proto3" json:"code_expires_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginFromNewDeviceOrIP) Reset() {
+	*x = LoginFromNewDeviceOrIP{}
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginFromNewDeviceOrIP) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginFromNewDeviceOrIP) ProtoMessage() {}
+
+func (x *LoginFromNewDeviceOrIP) ProtoReflect() protoreflect.Message {
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginFromNewDeviceOrIP.ProtoReflect.Descriptor instead.
+func (*LoginFromNewDeviceOrIP) Descriptor() ([]byte, []int) {
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *LoginFromNewDeviceOrIP) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *LoginFromNewDeviceOrIP) GetCodeExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CodeExpiresAt
+	}
+	return nil
+}
+
+type CreateSessionResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Payload:
+	//
+	//	*CreateSessionResponse_SessionCreated
+	//	*CreateSessionResponse_UserInBlacklist
+	//	*CreateSessionResponse_BadBypassCode
+	//	*CreateSessionResponse_LoginFromNewDevice
+	Payload       isCreateSessionResponse_Payload `protobuf_oneof:"payload"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
 func (x *CreateSessionResponse) Reset() {
 	*x = CreateSessionResponse{}
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[3]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -235,7 +461,7 @@ func (x *CreateSessionResponse) String() string {
 func (*CreateSessionResponse) ProtoMessage() {}
 
 func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sessionspb_sessionspb_proto_msgTypes[3]
+	mi := &file_sessionspb_sessionspb_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -248,43 +474,79 @@ func (x *CreateSessionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSessionResponse.ProtoReflect.Descriptor instead.
 func (*CreateSessionResponse) Descriptor() ([]byte, []int) {
-	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{3}
+	return file_sessionspb_sessionspb_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *CreateSessionResponse) GetAccessToken() string {
+func (x *CreateSessionResponse) GetPayload() isCreateSessionResponse_Payload {
 	if x != nil {
-		return x.AccessToken
-	}
-	return ""
-}
-
-func (x *CreateSessionResponse) GetRefreshToken() string {
-	if x != nil {
-		return x.RefreshToken
-	}
-	return ""
-}
-
-func (x *CreateSessionResponse) GetAccessExpTime() *timestamppb.Timestamp {
-	if x != nil {
-		return x.AccessExpTime
+		return x.Payload
 	}
 	return nil
 }
 
-func (x *CreateSessionResponse) GetRefreshExpTime() *timestamppb.Timestamp {
+func (x *CreateSessionResponse) GetSessionCreated() *SessionCreated {
 	if x != nil {
-		return x.RefreshExpTime
+		if x, ok := x.Payload.(*CreateSessionResponse_SessionCreated); ok {
+			return x.SessionCreated
+		}
 	}
 	return nil
 }
 
-func (x *CreateSessionResponse) GetTrustToken() *CreatedTrustToken {
+func (x *CreateSessionResponse) GetUserInBlacklist() *UserInBlacklist {
 	if x != nil {
-		return x.TrustToken
+		if x, ok := x.Payload.(*CreateSessionResponse_UserInBlacklist); ok {
+			return x.UserInBlacklist
+		}
 	}
 	return nil
 }
+
+func (x *CreateSessionResponse) GetBadBypassCode() *BadBypassCode {
+	if x != nil {
+		if x, ok := x.Payload.(*CreateSessionResponse_BadBypassCode); ok {
+			return x.BadBypassCode
+		}
+	}
+	return nil
+}
+
+func (x *CreateSessionResponse) GetLoginFromNewDevice() *LoginFromNewDeviceOrIP {
+	if x != nil {
+		if x, ok := x.Payload.(*CreateSessionResponse_LoginFromNewDevice); ok {
+			return x.LoginFromNewDevice
+		}
+	}
+	return nil
+}
+
+type isCreateSessionResponse_Payload interface {
+	isCreateSessionResponse_Payload()
+}
+
+type CreateSessionResponse_SessionCreated struct {
+	SessionCreated *SessionCreated `protobuf:"bytes,1,opt,name=session_created,json=sessionCreated,proto3,oneof"`
+}
+
+type CreateSessionResponse_UserInBlacklist struct {
+	UserInBlacklist *UserInBlacklist `protobuf:"bytes,2,opt,name=user_in_blacklist,json=userInBlacklist,proto3,oneof"`
+}
+
+type CreateSessionResponse_BadBypassCode struct {
+	BadBypassCode *BadBypassCode `protobuf:"bytes,3,opt,name=bad_bypass_code,json=badBypassCode,proto3,oneof"`
+}
+
+type CreateSessionResponse_LoginFromNewDevice struct {
+	LoginFromNewDevice *LoginFromNewDeviceOrIP `protobuf:"bytes,4,opt,name=login_from_new_device,json=loginFromNewDevice,proto3,oneof"`
+}
+
+func (*CreateSessionResponse_SessionCreated) isCreateSessionResponse_Payload() {}
+
+func (*CreateSessionResponse_UserInBlacklist) isCreateSessionResponse_Payload() {}
+
+func (*CreateSessionResponse_BadBypassCode) isCreateSessionResponse_Payload() {}
+
+func (*CreateSessionResponse_LoginFromNewDevice) isCreateSessionResponse_Payload() {}
 
 var File_sessionspb_sessionspb_proto protoreflect.FileDescriptor
 
@@ -309,15 +571,29 @@ const file_sessionspb_sessionspb_proto_rawDesc = "" +
 	"\x13_device_trust_token\"\x8c\x01\n" +
 	"\x11CreatedTrustToken\x12*\n" +
 	"\x11trust_token_value\x18\x01 \x01(\tR\x0ftrustTokenValue\x12K\n" +
-	"\x14trust_token_exp_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x11trustTokenExpTime\"\xbe\x02\n" +
-	"\x15CreateSessionResponse\x12!\n" +
+	"\x14trust_token_exp_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x11trustTokenExpTime\"\xb7\x02\n" +
+	"\x0eSessionCreated\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12B\n" +
 	"\x0faccess_exp_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\raccessExpTime\x12D\n" +
 	"\x10refresh_exp_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x0erefreshExpTime\x12C\n" +
 	"\vtrust_token\x18\x05 \x01(\v2\x1d.sessionspb.CreatedTrustTokenH\x00R\n" +
 	"trustToken\x88\x01\x01B\x0e\n" +
-	"\f_trust_token2\xbf\x01\n" +
+	"\f_trust_token\"o\n" +
+	"\x0fUserInBlacklist\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12B\n" +
+	"\x0flink_expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\rlinkExpiresAt\")\n" +
+	"\rBadBypassCode\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"v\n" +
+	"\x16LoginFromNewDeviceOrIP\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12B\n" +
+	"\x0fcode_expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\rcodeExpiresAt\"\xd2\x02\n" +
+	"\x15CreateSessionResponse\x12E\n" +
+	"\x0fsession_created\x18\x01 \x01(\v2\x1a.sessionspb.SessionCreatedH\x00R\x0esessionCreated\x12I\n" +
+	"\x11user_in_blacklist\x18\x02 \x01(\v2\x1b.sessionspb.UserInBlacklistH\x00R\x0fuserInBlacklist\x12C\n" +
+	"\x0fbad_bypass_code\x18\x03 \x01(\v2\x19.sessionspb.BadBypassCodeH\x00R\rbadBypassCode\x12W\n" +
+	"\x15login_from_new_device\x18\x04 \x01(\v2\".sessionspb.LoginFromNewDeviceOrIPH\x00R\x12loginFromNewDeviceB\t\n" +
+	"\apayload2\xbf\x01\n" +
 	"\x0fSessionsService\x12T\n" +
 	"\rCreateSession\x12 .sessionspb.CreateSessionRequest\x1a!.sessionspb.CreateSessionResponse\x12V\n" +
 	"\x0eRefreshSession\x12!.sessionspb.RefreshSessionRequest\x1a!.sessionspb.CreateSessionResponseB<Z:github.com/fedotovmax/microservices-shop-protos/sessionspbb\x06proto3"
@@ -334,28 +610,38 @@ func file_sessionspb_sessionspb_proto_rawDescGZIP() []byte {
 	return file_sessionspb_sessionspb_proto_rawDescData
 }
 
-var file_sessionspb_sessionspb_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_sessionspb_sessionspb_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_sessionspb_sessionspb_proto_goTypes = []any{
-	(*RefreshSessionRequest)(nil), // 0: sessionspb.RefreshSessionRequest
-	(*CreateSessionRequest)(nil),  // 1: sessionspb.CreateSessionRequest
-	(*CreatedTrustToken)(nil),     // 2: sessionspb.CreatedTrustToken
-	(*CreateSessionResponse)(nil), // 3: sessionspb.CreateSessionResponse
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(*RefreshSessionRequest)(nil),  // 0: sessionspb.RefreshSessionRequest
+	(*CreateSessionRequest)(nil),   // 1: sessionspb.CreateSessionRequest
+	(*CreatedTrustToken)(nil),      // 2: sessionspb.CreatedTrustToken
+	(*SessionCreated)(nil),         // 3: sessionspb.SessionCreated
+	(*UserInBlacklist)(nil),        // 4: sessionspb.UserInBlacklist
+	(*BadBypassCode)(nil),          // 5: sessionspb.BadBypassCode
+	(*LoginFromNewDeviceOrIP)(nil), // 6: sessionspb.LoginFromNewDeviceOrIP
+	(*CreateSessionResponse)(nil),  // 7: sessionspb.CreateSessionResponse
+	(*timestamppb.Timestamp)(nil),  // 8: google.protobuf.Timestamp
 }
 var file_sessionspb_sessionspb_proto_depIdxs = []int32{
-	4, // 0: sessionspb.CreatedTrustToken.trust_token_exp_time:type_name -> google.protobuf.Timestamp
-	4, // 1: sessionspb.CreateSessionResponse.access_exp_time:type_name -> google.protobuf.Timestamp
-	4, // 2: sessionspb.CreateSessionResponse.refresh_exp_time:type_name -> google.protobuf.Timestamp
-	2, // 3: sessionspb.CreateSessionResponse.trust_token:type_name -> sessionspb.CreatedTrustToken
-	1, // 4: sessionspb.SessionsService.CreateSession:input_type -> sessionspb.CreateSessionRequest
-	0, // 5: sessionspb.SessionsService.RefreshSession:input_type -> sessionspb.RefreshSessionRequest
-	3, // 6: sessionspb.SessionsService.CreateSession:output_type -> sessionspb.CreateSessionResponse
-	3, // 7: sessionspb.SessionsService.RefreshSession:output_type -> sessionspb.CreateSessionResponse
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	8,  // 0: sessionspb.CreatedTrustToken.trust_token_exp_time:type_name -> google.protobuf.Timestamp
+	8,  // 1: sessionspb.SessionCreated.access_exp_time:type_name -> google.protobuf.Timestamp
+	8,  // 2: sessionspb.SessionCreated.refresh_exp_time:type_name -> google.protobuf.Timestamp
+	2,  // 3: sessionspb.SessionCreated.trust_token:type_name -> sessionspb.CreatedTrustToken
+	8,  // 4: sessionspb.UserInBlacklist.link_expires_at:type_name -> google.protobuf.Timestamp
+	8,  // 5: sessionspb.LoginFromNewDeviceOrIP.code_expires_at:type_name -> google.protobuf.Timestamp
+	3,  // 6: sessionspb.CreateSessionResponse.session_created:type_name -> sessionspb.SessionCreated
+	4,  // 7: sessionspb.CreateSessionResponse.user_in_blacklist:type_name -> sessionspb.UserInBlacklist
+	5,  // 8: sessionspb.CreateSessionResponse.bad_bypass_code:type_name -> sessionspb.BadBypassCode
+	6,  // 9: sessionspb.CreateSessionResponse.login_from_new_device:type_name -> sessionspb.LoginFromNewDeviceOrIP
+	1,  // 10: sessionspb.SessionsService.CreateSession:input_type -> sessionspb.CreateSessionRequest
+	0,  // 11: sessionspb.SessionsService.RefreshSession:input_type -> sessionspb.RefreshSessionRequest
+	7,  // 12: sessionspb.SessionsService.CreateSession:output_type -> sessionspb.CreateSessionResponse
+	7,  // 13: sessionspb.SessionsService.RefreshSession:output_type -> sessionspb.CreateSessionResponse
+	12, // [12:14] is the sub-list for method output_type
+	10, // [10:12] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_sessionspb_sessionspb_proto_init() }
@@ -365,13 +651,19 @@ func file_sessionspb_sessionspb_proto_init() {
 	}
 	file_sessionspb_sessionspb_proto_msgTypes[1].OneofWrappers = []any{}
 	file_sessionspb_sessionspb_proto_msgTypes[3].OneofWrappers = []any{}
+	file_sessionspb_sessionspb_proto_msgTypes[7].OneofWrappers = []any{
+		(*CreateSessionResponse_SessionCreated)(nil),
+		(*CreateSessionResponse_UserInBlacklist)(nil),
+		(*CreateSessionResponse_BadBypassCode)(nil),
+		(*CreateSessionResponse_LoginFromNewDevice)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sessionspb_sessionspb_proto_rawDesc), len(file_sessionspb_sessionspb_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
