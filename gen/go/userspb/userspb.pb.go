@@ -23,61 +23,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UserSessionActionStatus int32
-
-const (
-	UserSessionActionStatus_SESSION_STATUS_UNSPECIFIED        UserSessionActionStatus = 0
-	UserSessionActionStatus_SESSION_STATUS_DELETED            UserSessionActionStatus = 1
-	UserSessionActionStatus_SESSION_STATUS_EMAIL_NOT_VERIFIED UserSessionActionStatus = 2
-	UserSessionActionStatus_SESSION_STATUS_BAD_CREDENTIALS    UserSessionActionStatus = 3
-	UserSessionActionStatus_SESSION_STATUS_OK                 UserSessionActionStatus = 4
-)
-
-// Enum value maps for UserSessionActionStatus.
-var (
-	UserSessionActionStatus_name = map[int32]string{
-		0: "SESSION_STATUS_UNSPECIFIED",
-		1: "SESSION_STATUS_DELETED",
-		2: "SESSION_STATUS_EMAIL_NOT_VERIFIED",
-		3: "SESSION_STATUS_BAD_CREDENTIALS",
-		4: "SESSION_STATUS_OK",
-	}
-	UserSessionActionStatus_value = map[string]int32{
-		"SESSION_STATUS_UNSPECIFIED":        0,
-		"SESSION_STATUS_DELETED":            1,
-		"SESSION_STATUS_EMAIL_NOT_VERIFIED": 2,
-		"SESSION_STATUS_BAD_CREDENTIALS":    3,
-		"SESSION_STATUS_OK":                 4,
-	}
-)
-
-func (x UserSessionActionStatus) Enum() *UserSessionActionStatus {
-	p := new(UserSessionActionStatus)
-	*p = x
-	return p
-}
-
-func (x UserSessionActionStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (UserSessionActionStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_userspb_userspb_proto_enumTypes[0].Descriptor()
-}
-
-func (UserSessionActionStatus) Type() protoreflect.EnumType {
-	return &file_userspb_userspb_proto_enumTypes[0]
-}
-
-func (x UserSessionActionStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use UserSessionActionStatus.Descriptor instead.
-func (UserSessionActionStatus) EnumDescriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{0}
-}
-
 type GenderValue int32
 
 const (
@@ -114,11 +59,11 @@ func (x GenderValue) String() string {
 }
 
 func (GenderValue) Descriptor() protoreflect.EnumDescriptor {
-	return file_userspb_userspb_proto_enumTypes[1].Descriptor()
+	return file_userspb_userspb_proto_enumTypes[0].Descriptor()
 }
 
 func (GenderValue) Type() protoreflect.EnumType {
-	return &file_userspb_userspb_proto_enumTypes[1]
+	return &file_userspb_userspb_proto_enumTypes[0]
 }
 
 func (x GenderValue) Number() protoreflect.EnumNumber {
@@ -127,7 +72,7 @@ func (x GenderValue) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GenderValue.Descriptor instead.
 func (GenderValue) EnumDescriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{1}
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{0}
 }
 
 type FindUserByIDRequest struct {
@@ -366,23 +311,222 @@ func (x *UserSessionActionRequest) GetPassword() string {
 	return ""
 }
 
+type UserDeleted struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Message           string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty" validate:"required"`                                                 
+	DeletedAt         *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty" validate:"required"`                            
+	LastChanceRestore *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=last_chance_restore,json=lastChanceRestore,proto3" json:"last_chance_restore,omitempty" validate:"required"`  
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *UserDeleted) Reset() {
+	*x = UserDeleted{}
+	mi := &file_userspb_userspb_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserDeleted) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserDeleted) ProtoMessage() {}
+
+func (x *UserDeleted) ProtoReflect() protoreflect.Message {
+	mi := &file_userspb_userspb_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserDeleted.ProtoReflect.Descriptor instead.
+func (*UserDeleted) Descriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *UserDeleted) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *UserDeleted) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return nil
+}
+
+func (x *UserDeleted) GetLastChanceRestore() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastChanceRestore
+	}
+	return nil
+}
+
+type UserEmailNotVerified struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty" validate:"required"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserEmailNotVerified) Reset() {
+	*x = UserEmailNotVerified{}
+	mi := &file_userspb_userspb_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserEmailNotVerified) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserEmailNotVerified) ProtoMessage() {}
+
+func (x *UserEmailNotVerified) ProtoReflect() protoreflect.Message {
+	mi := &file_userspb_userspb_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserEmailNotVerified.ProtoReflect.Descriptor instead.
+func (*UserEmailNotVerified) Descriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UserEmailNotVerified) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type UserBadCredentials struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty" validate:"required"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserBadCredentials) Reset() {
+	*x = UserBadCredentials{}
+	mi := &file_userspb_userspb_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserBadCredentials) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserBadCredentials) ProtoMessage() {}
+
+func (x *UserBadCredentials) ProtoReflect() protoreflect.Message {
+	mi := &file_userspb_userspb_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserBadCredentials.ProtoReflect.Descriptor instead.
+func (*UserBadCredentials) Descriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UserBadCredentials) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type UserOK struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" validate:"required" format:"email"`                  
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" validate:"required" format:"uuid"`  
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserOK) Reset() {
+	*x = UserOK{}
+	mi := &file_userspb_userspb_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserOK) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserOK) ProtoMessage() {}
+
+func (x *UserOK) ProtoReflect() protoreflect.Message {
+	mi := &file_userspb_userspb_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserOK.ProtoReflect.Descriptor instead.
+func (*UserOK) Descriptor() ([]byte, []int) {
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UserOK) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *UserOK) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
 type UserSessionActionResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// SESSION_STATUS_UNSPECIFIED = 0 Reserved for Proto, not a valid value
-	// SESSION_STATUS_DELETED = 1 User account is deleted
-	// SESSION_STATUS_EMAIL_NOT_VERIFIED = 2 User email address not verfied
-	// SESSION_STATUS_BAD_CREDENTIALS = 3 Invalid login or password
-	// SESSION_STATUS_OK = 4 Success value
-	UserSessionActionStatus UserSessionActionStatus `protobuf:"varint,1,opt,name=user_session_action_status,json=userSessionActionStatus,proto3,enum=userspb.UserSessionActionStatus" json:"user_session_action_status,omitempty" validate:"required" example:"2"`  
-	Email                   *string                 `protobuf:"bytes,2,opt,name=email,proto3,oneof" json:"email,omitempty" validate:"optional" format:"email"`                                                                                                         
-	UserId                  *string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3,oneof" json:"user_id,omitempty" validate:"optional" format:"uuid"`                                                                                         
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	// Types that are valid to be assigned to Payload:
+	//
+	//	*UserSessionActionResponse_Deleted
+	//	*UserSessionActionResponse_EmailNotVerified
+	//	*UserSessionActionResponse_BadCredentials
+	//	*UserSessionActionResponse_Ok
+	Payload       isUserSessionActionResponse_Payload `protobuf_oneof:"payload"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UserSessionActionResponse) Reset() {
 	*x = UserSessionActionResponse{}
-	mi := &file_userspb_userspb_proto_msgTypes[5]
+	mi := &file_userspb_userspb_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -394,7 +538,7 @@ func (x *UserSessionActionResponse) String() string {
 func (*UserSessionActionResponse) ProtoMessage() {}
 
 func (x *UserSessionActionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_userspb_userspb_proto_msgTypes[5]
+	mi := &file_userspb_userspb_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -407,29 +551,79 @@ func (x *UserSessionActionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserSessionActionResponse.ProtoReflect.Descriptor instead.
 func (*UserSessionActionResponse) Descriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{5}
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *UserSessionActionResponse) GetUserSessionActionStatus() UserSessionActionStatus {
+func (x *UserSessionActionResponse) GetPayload() isUserSessionActionResponse_Payload {
 	if x != nil {
-		return x.UserSessionActionStatus
+		return x.Payload
 	}
-	return UserSessionActionStatus_SESSION_STATUS_UNSPECIFIED
+	return nil
 }
 
-func (x *UserSessionActionResponse) GetEmail() string {
-	if x != nil && x.Email != nil {
-		return *x.Email
+func (x *UserSessionActionResponse) GetDeleted() *UserDeleted {
+	if x != nil {
+		if x, ok := x.Payload.(*UserSessionActionResponse_Deleted); ok {
+			return x.Deleted
+		}
 	}
-	return ""
+	return nil
 }
 
-func (x *UserSessionActionResponse) GetUserId() string {
-	if x != nil && x.UserId != nil {
-		return *x.UserId
+func (x *UserSessionActionResponse) GetEmailNotVerified() *UserEmailNotVerified {
+	if x != nil {
+		if x, ok := x.Payload.(*UserSessionActionResponse_EmailNotVerified); ok {
+			return x.EmailNotVerified
+		}
 	}
-	return ""
+	return nil
 }
+
+func (x *UserSessionActionResponse) GetBadCredentials() *UserBadCredentials {
+	if x != nil {
+		if x, ok := x.Payload.(*UserSessionActionResponse_BadCredentials); ok {
+			return x.BadCredentials
+		}
+	}
+	return nil
+}
+
+func (x *UserSessionActionResponse) GetOk() *UserOK {
+	if x != nil {
+		if x, ok := x.Payload.(*UserSessionActionResponse_Ok); ok {
+			return x.Ok
+		}
+	}
+	return nil
+}
+
+type isUserSessionActionResponse_Payload interface {
+	isUserSessionActionResponse_Payload()
+}
+
+type UserSessionActionResponse_Deleted struct {
+	Deleted *UserDeleted `protobuf:"bytes,1,opt,name=deleted,proto3,oneof"`
+}
+
+type UserSessionActionResponse_EmailNotVerified struct {
+	EmailNotVerified *UserEmailNotVerified `protobuf:"bytes,2,opt,name=email_not_verified,json=emailNotVerified,proto3,oneof"`
+}
+
+type UserSessionActionResponse_BadCredentials struct {
+	BadCredentials *UserBadCredentials `protobuf:"bytes,3,opt,name=bad_credentials,json=badCredentials,proto3,oneof"`
+}
+
+type UserSessionActionResponse_Ok struct {
+	Ok *UserOK `protobuf:"bytes,4,opt,name=ok,proto3,oneof"`
+}
+
+func (*UserSessionActionResponse_Deleted) isUserSessionActionResponse_Payload() {}
+
+func (*UserSessionActionResponse_EmailNotVerified) isUserSessionActionResponse_Payload() {}
+
+func (*UserSessionActionResponse_BadCredentials) isUserSessionActionResponse_Payload() {}
+
+func (*UserSessionActionResponse_Ok) isUserSessionActionResponse_Payload() {}
 
 type UpdateUserProfileData struct {
 	state      protoimpl.MessageState `protogen:"open.v1"`
@@ -449,7 +643,7 @@ type UpdateUserProfileData struct {
 
 func (x *UpdateUserProfileData) Reset() {
 	*x = UpdateUserProfileData{}
-	mi := &file_userspb_userspb_proto_msgTypes[6]
+	mi := &file_userspb_userspb_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -461,7 +655,7 @@ func (x *UpdateUserProfileData) String() string {
 func (*UpdateUserProfileData) ProtoMessage() {}
 
 func (x *UpdateUserProfileData) ProtoReflect() protoreflect.Message {
-	mi := &file_userspb_userspb_proto_msgTypes[6]
+	mi := &file_userspb_userspb_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -474,7 +668,7 @@ func (x *UpdateUserProfileData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserProfileData.ProtoReflect.Descriptor instead.
 func (*UpdateUserProfileData) Descriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{6}
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateUserProfileData) GetBirthDate() string {
@@ -529,7 +723,7 @@ type UpdateUserProfileRequest struct {
 
 func (x *UpdateUserProfileRequest) Reset() {
 	*x = UpdateUserProfileRequest{}
-	mi := &file_userspb_userspb_proto_msgTypes[7]
+	mi := &file_userspb_userspb_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -541,7 +735,7 @@ func (x *UpdateUserProfileRequest) String() string {
 func (*UpdateUserProfileRequest) ProtoMessage() {}
 
 func (x *UpdateUserProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_userspb_userspb_proto_msgTypes[7]
+	mi := &file_userspb_userspb_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -554,7 +748,7 @@ func (x *UpdateUserProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserProfileRequest.ProtoReflect.Descriptor instead.
 func (*UpdateUserProfileRequest) Descriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{7}
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateUserProfileRequest) GetUserId() string {
@@ -585,7 +779,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_userspb_userspb_proto_msgTypes[8]
+	mi := &file_userspb_userspb_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -597,7 +791,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_userspb_userspb_proto_msgTypes[8]
+	mi := &file_userspb_userspb_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -610,7 +804,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{8}
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *User) GetCreatedAt() *timestamppb.Timestamp {
@@ -674,7 +868,7 @@ type Profile struct {
 
 func (x *Profile) Reset() {
 	*x = Profile{}
-	mi := &file_userspb_userspb_proto_msgTypes[9]
+	mi := &file_userspb_userspb_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -686,7 +880,7 @@ func (x *Profile) String() string {
 func (*Profile) ProtoMessage() {}
 
 func (x *Profile) ProtoReflect() protoreflect.Message {
-	mi := &file_userspb_userspb_proto_msgTypes[9]
+	mi := &file_userspb_userspb_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -699,7 +893,7 @@ func (x *Profile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Profile.ProtoReflect.Descriptor instead.
 func (*Profile) Descriptor() ([]byte, []int) {
-	return file_userspb_userspb_proto_rawDescGZIP(), []int{9}
+	return file_userspb_userspb_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *Profile) GetUpdatedAt() *timestamppb.Timestamp {
@@ -767,14 +961,25 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"L\n" +
 	"\x18UserSessionActionRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xc9\x01\n" +
-	"\x19UserSessionActionResponse\x12]\n" +
-	"\x1auser_session_action_status\x18\x01 \x01(\x0e2 .userspb.UserSessionActionStatusR\x17userSessionActionStatus\x12\x19\n" +
-	"\x05email\x18\x02 \x01(\tH\x00R\x05email\x88\x01\x01\x12\x1c\n" +
-	"\auser_id\x18\x03 \x01(\tH\x01R\x06userId\x88\x01\x01B\b\n" +
-	"\x06_emailB\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xae\x01\n" +
+	"\vUserDeleted\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x129\n" +
 	"\n" +
-	"\b_user_id\"\xe5\x02\n" +
+	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\x12J\n" +
+	"\x13last_chance_restore\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x11lastChanceRestore\"0\n" +
+	"\x14UserEmailNotVerified\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\".\n" +
+	"\x12UserBadCredentials\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"7\n" +
+	"\x06UserOK\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\x92\x02\n" +
+	"\x19UserSessionActionResponse\x120\n" +
+	"\adeleted\x18\x01 \x01(\v2\x14.userspb.UserDeletedH\x00R\adeleted\x12M\n" +
+	"\x12email_not_verified\x18\x02 \x01(\v2\x1d.userspb.UserEmailNotVerifiedH\x00R\x10emailNotVerified\x12F\n" +
+	"\x0fbad_credentials\x18\x03 \x01(\v2\x1b.userspb.UserBadCredentialsH\x00R\x0ebadCredentials\x12!\n" +
+	"\x02ok\x18\x04 \x01(\v2\x0f.userspb.UserOKH\x00R\x02okB\t\n" +
+	"\apayload\"\xe5\x02\n" +
 	"\x15UpdateUserProfileData\x12\"\n" +
 	"\n" +
 	"birth_date\x18\x01 \x01(\tH\x00R\tbirthDate\x88\x01\x01\x12 \n" +
@@ -824,13 +1029,7 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"_last_nameB\r\n" +
 	"\v_first_nameB\x0e\n" +
 	"\f_middle_nameB\r\n" +
-	"\v_avatar_url*\xb7\x01\n" +
-	"\x17UserSessionActionStatus\x12\x1e\n" +
-	"\x1aSESSION_STATUS_UNSPECIFIED\x10\x00\x12\x1a\n" +
-	"\x16SESSION_STATUS_DELETED\x10\x01\x12%\n" +
-	"!SESSION_STATUS_EMAIL_NOT_VERIFIED\x10\x02\x12\"\n" +
-	"\x1eSESSION_STATUS_BAD_CREDENTIALS\x10\x03\x12\x15\n" +
-	"\x11SESSION_STATUS_OK\x10\x04*`\n" +
+	"\v_avatar_url*`\n" +
 	"\vGenderValue\x12\x16\n" +
 	"\x12GENDER_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11GENDER_UNSELECTED\x10\x01\x12\x0f\n" +
@@ -856,48 +1055,56 @@ func file_userspb_userspb_proto_rawDescGZIP() []byte {
 	return file_userspb_userspb_proto_rawDescData
 }
 
-var file_userspb_userspb_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_userspb_userspb_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_userspb_userspb_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_userspb_userspb_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_userspb_userspb_proto_goTypes = []any{
-	(UserSessionActionStatus)(0),      // 0: userspb.UserSessionActionStatus
-	(GenderValue)(0),                  // 1: userspb.GenderValue
-	(*FindUserByIDRequest)(nil),       // 2: userspb.FindUserByIDRequest
-	(*FindUserByEmailRequest)(nil),    // 3: userspb.FindUserByEmailRequest
-	(*CreateUserRequest)(nil),         // 4: userspb.CreateUserRequest
-	(*CreateUserResponse)(nil),        // 5: userspb.CreateUserResponse
-	(*UserSessionActionRequest)(nil),  // 6: userspb.UserSessionActionRequest
-	(*UserSessionActionResponse)(nil), // 7: userspb.UserSessionActionResponse
-	(*UpdateUserProfileData)(nil),     // 8: userspb.UpdateUserProfileData
-	(*UpdateUserProfileRequest)(nil),  // 9: userspb.UpdateUserProfileRequest
-	(*User)(nil),                      // 10: userspb.User
-	(*Profile)(nil),                   // 11: userspb.Profile
-	(*timestamppb.Timestamp)(nil),     // 12: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),             // 13: google.protobuf.Empty
+	(GenderValue)(0),                  // 0: userspb.GenderValue
+	(*FindUserByIDRequest)(nil),       // 1: userspb.FindUserByIDRequest
+	(*FindUserByEmailRequest)(nil),    // 2: userspb.FindUserByEmailRequest
+	(*CreateUserRequest)(nil),         // 3: userspb.CreateUserRequest
+	(*CreateUserResponse)(nil),        // 4: userspb.CreateUserResponse
+	(*UserSessionActionRequest)(nil),  // 5: userspb.UserSessionActionRequest
+	(*UserDeleted)(nil),               // 6: userspb.UserDeleted
+	(*UserEmailNotVerified)(nil),      // 7: userspb.UserEmailNotVerified
+	(*UserBadCredentials)(nil),        // 8: userspb.UserBadCredentials
+	(*UserOK)(nil),                    // 9: userspb.UserOK
+	(*UserSessionActionResponse)(nil), // 10: userspb.UserSessionActionResponse
+	(*UpdateUserProfileData)(nil),     // 11: userspb.UpdateUserProfileData
+	(*UpdateUserProfileRequest)(nil),  // 12: userspb.UpdateUserProfileRequest
+	(*User)(nil),                      // 13: userspb.User
+	(*Profile)(nil),                   // 14: userspb.Profile
+	(*timestamppb.Timestamp)(nil),     // 15: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),             // 16: google.protobuf.Empty
 }
 var file_userspb_userspb_proto_depIdxs = []int32{
-	0,  // 0: userspb.UserSessionActionResponse.user_session_action_status:type_name -> userspb.UserSessionActionStatus
-	1,  // 1: userspb.UpdateUserProfileData.gender_value:type_name -> userspb.GenderValue
-	8,  // 2: userspb.UpdateUserProfileRequest.data:type_name -> userspb.UpdateUserProfileData
-	12, // 3: userspb.User.created_at:type_name -> google.protobuf.Timestamp
-	12, // 4: userspb.User.updated_at:type_name -> google.protobuf.Timestamp
-	11, // 5: userspb.User.profile:type_name -> userspb.Profile
-	12, // 6: userspb.Profile.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 7: userspb.Profile.gender:type_name -> userspb.GenderValue
-	4,  // 8: userspb.UserService.CreateUser:input_type -> userspb.CreateUserRequest
-	9,  // 9: userspb.UserService.UpdateUserProfile:input_type -> userspb.UpdateUserProfileRequest
-	2,  // 10: userspb.UserService.FindUserByID:input_type -> userspb.FindUserByIDRequest
-	3,  // 11: userspb.UserService.FindUserByEmail:input_type -> userspb.FindUserByEmailRequest
-	6,  // 12: userspb.UserService.UserSessionAction:input_type -> userspb.UserSessionActionRequest
-	5,  // 13: userspb.UserService.CreateUser:output_type -> userspb.CreateUserResponse
-	13, // 14: userspb.UserService.UpdateUserProfile:output_type -> google.protobuf.Empty
-	10, // 15: userspb.UserService.FindUserByID:output_type -> userspb.User
-	10, // 16: userspb.UserService.FindUserByEmail:output_type -> userspb.User
-	7,  // 17: userspb.UserService.UserSessionAction:output_type -> userspb.UserSessionActionResponse
-	13, // [13:18] is the sub-list for method output_type
-	8,  // [8:13] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	15, // 0: userspb.UserDeleted.deleted_at:type_name -> google.protobuf.Timestamp
+	15, // 1: userspb.UserDeleted.last_chance_restore:type_name -> google.protobuf.Timestamp
+	6,  // 2: userspb.UserSessionActionResponse.deleted:type_name -> userspb.UserDeleted
+	7,  // 3: userspb.UserSessionActionResponse.email_not_verified:type_name -> userspb.UserEmailNotVerified
+	8,  // 4: userspb.UserSessionActionResponse.bad_credentials:type_name -> userspb.UserBadCredentials
+	9,  // 5: userspb.UserSessionActionResponse.ok:type_name -> userspb.UserOK
+	0,  // 6: userspb.UpdateUserProfileData.gender_value:type_name -> userspb.GenderValue
+	11, // 7: userspb.UpdateUserProfileRequest.data:type_name -> userspb.UpdateUserProfileData
+	15, // 8: userspb.User.created_at:type_name -> google.protobuf.Timestamp
+	15, // 9: userspb.User.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 10: userspb.User.profile:type_name -> userspb.Profile
+	15, // 11: userspb.Profile.updated_at:type_name -> google.protobuf.Timestamp
+	0,  // 12: userspb.Profile.gender:type_name -> userspb.GenderValue
+	3,  // 13: userspb.UserService.CreateUser:input_type -> userspb.CreateUserRequest
+	12, // 14: userspb.UserService.UpdateUserProfile:input_type -> userspb.UpdateUserProfileRequest
+	1,  // 15: userspb.UserService.FindUserByID:input_type -> userspb.FindUserByIDRequest
+	2,  // 16: userspb.UserService.FindUserByEmail:input_type -> userspb.FindUserByEmailRequest
+	5,  // 17: userspb.UserService.UserSessionAction:input_type -> userspb.UserSessionActionRequest
+	4,  // 18: userspb.UserService.CreateUser:output_type -> userspb.CreateUserResponse
+	16, // 19: userspb.UserService.UpdateUserProfile:output_type -> google.protobuf.Empty
+	13, // 20: userspb.UserService.FindUserByID:output_type -> userspb.User
+	13, // 21: userspb.UserService.FindUserByEmail:output_type -> userspb.User
+	10, // 22: userspb.UserService.UserSessionAction:output_type -> userspb.UserSessionActionResponse
+	18, // [18:23] is the sub-list for method output_type
+	13, // [13:18] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_userspb_userspb_proto_init() }
@@ -905,17 +1112,22 @@ func file_userspb_userspb_proto_init() {
 	if File_userspb_userspb_proto != nil {
 		return
 	}
-	file_userspb_userspb_proto_msgTypes[5].OneofWrappers = []any{}
-	file_userspb_userspb_proto_msgTypes[6].OneofWrappers = []any{}
-	file_userspb_userspb_proto_msgTypes[8].OneofWrappers = []any{}
-	file_userspb_userspb_proto_msgTypes[9].OneofWrappers = []any{}
+	file_userspb_userspb_proto_msgTypes[9].OneofWrappers = []any{
+		(*UserSessionActionResponse_Deleted)(nil),
+		(*UserSessionActionResponse_EmailNotVerified)(nil),
+		(*UserSessionActionResponse_BadCredentials)(nil),
+		(*UserSessionActionResponse_Ok)(nil),
+	}
+	file_userspb_userspb_proto_msgTypes[10].OneofWrappers = []any{}
+	file_userspb_userspb_proto_msgTypes[12].OneofWrappers = []any{}
+	file_userspb_userspb_proto_msgTypes[13].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_userspb_userspb_proto_rawDesc), len(file_userspb_userspb_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   10,
+			NumEnums:      1,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -42,33 +42,23 @@ message UserSessionActionRequest {
   string password = 2; // @gotags: validate:"required"
 }
 
-message UserDeleted {
-  string message = 1; // @gotags: validate:"required"
-  google.protobuf.Timestamp deleted_at = 2; // @gotags: validate:"required"
-  google.protobuf.Timestamp last_chance_restore = 3; // @gotags: validate:"required"
+enum UserSessionActionStatus {
+  SESSION_STATUS_UNSPECIFIED = 0;
+  SESSION_STATUS_DELETED = 1;
+  SESSION_STATUS_EMAIL_NOT_VERIFIED = 2;
+  SESSION_STATUS_BAD_CREDENTIALS = 3;
+  SESSION_STATUS_OK = 4;
 }
-
-message UserEmailNotVerified {
-  string message = 1; // @gotags: validate:"required"
-}
-
-message UserBadCredentials {
-  string message = 1; // @gotags: validate:"required"
-}
-
-message UserOK {
-  string email = 1; // @gotags: validate:"required" format:"email"
-  string user_id = 2; // @gotags: validate:"required" format:"uuid"
-}
-
 
 message UserSessionActionResponse {
-  oneof payload {
-    UserDeleted deleted = 1;
-    UserEmailNotVerified email_not_verified = 2;
-    UserBadCredentials bad_credentials = 3;
-    UserOK ok = 4;
-  }
+  // SESSION_STATUS_UNSPECIFIED = 0 Reserved for Proto, not a valid value
+  // SESSION_STATUS_DELETED = 1 User account is deleted
+  // SESSION_STATUS_EMAIL_NOT_VERIFIED = 2 User email address not verfied
+  // SESSION_STATUS_BAD_CREDENTIALS = 3 Invalid login or password
+  // SESSION_STATUS_OK = 4 Success value
+  UserSessionActionStatus user_session_action_status = 1; // @gotags: validate:"required" example:"2"
+  optional string email = 2; // @gotags: validate:"optional" format:"email"
+  optional string user_id = 3; // @gotags: validate:"optional" format:"uuid"
 }
 
 message UpdateUserProfileData {
