@@ -636,7 +636,7 @@ type UpdateUserProfileData struct {
 	// GENDER_UNSELECTED = 1 User has not selected a gender
 	// GENDER_MALE = 2 Represents male gender
 	// GENDER_FEMALE = 3 Represents female gender
-	GenderValue   *GenderValue `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty" validate:"optional" example:"1" extensions:"x-enum-varnames=GENDER_UNSPECIFIED,GENDER_UNSELECTED,GENDER_MALE,GENDER_FEMALE"`  
+	GenderValue   *GenderValue `protobuf:"varint,6,opt,name=gender_value,json=genderValue,proto3,enum=userspb.GenderValue,oneof" json:"gender_value,omitempty" validate:"optional" example:"1"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -861,7 +861,7 @@ type Profile struct {
 	// GENDER_UNSELECTED = 1 User has not selected a gender
 	// GENDER_MALE = 2 Represents male gender
 	// GENDER_FEMALE = 3 Represents female gender
-	Gender        GenderValue `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.GenderValue" json:"gender,omitempty" validate:"required" example:"1" extensions:"x-enum-varnames=GENDER_UNSPECIFIED,GENDER_UNSELECTED,GENDER_MALE,GENDER_FEMALE"`  
+	Gender        GenderValue `protobuf:"varint,7,opt,name=gender,proto3,enum=userspb.GenderValue" json:"gender,omitempty" validate:"required" example:"1"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
