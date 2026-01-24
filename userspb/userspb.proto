@@ -82,7 +82,7 @@ message UpdateUserProfileData {
   // GENDER_UNSELECTED = 1 User has not selected a gender
   // GENDER_MALE = 2 Represents male gender
   // GENDER_FEMALE = 3 Represents female gender
-  optional GenderValue gender_value = 6;// @gotags: validate:"optional" example:"1"
+  optional GenderValue gender_value = 6;// @gotags: validate:"optional" example:"1" extensions:"x-enum-varnames=GENDER_UNSPECIFIED,GENDER_UNSELECTED,GENDER_MALE,GENDER_FEMALE"
 }
 
 message UpdateUserProfileRequest {
@@ -119,5 +119,5 @@ message Profile {
   // GENDER_UNSELECTED = 1 User has not selected a gender
   // GENDER_MALE = 2 Represents male gender
   // GENDER_FEMALE = 3 Represents female gender
-  GenderValue gender = 7; // @gotags: validate:"required" example:"1"
+  GenderValue gender = 7; // @gotags: validate:"required" example:"1" extensions:"x-enum-varnames=GENDER_UNSPECIFIED,GENDER_UNSELECTED,GENDER_MALE,GENDER_FEMALE"
 }
