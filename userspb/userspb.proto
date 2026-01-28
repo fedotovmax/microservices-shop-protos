@@ -18,6 +18,36 @@ service UserService {
   rpc FindUserByEmail(FindUserByEmailRequest) returns (User);
 
   rpc UserSessionAction(UserSessionActionRequest) returns (UserSessionActionResponse);
+
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
+
+  rpc SendNewLink(SendNewLinkRequest) returns (google.protobuf.Empty);
+}
+
+
+message SendNewLinkRequest {
+  string user_id = 1;
+}
+
+message VerifyEmailResponse {
+  oneof payload {
+    EmailVerifiedSuccess ok = 1;
+    VerifyEmailLinkExpired link_expired = 2;
+  }
+}
+
+
+message EmailVerifiedSuccess {
+  string message = 1;
+}
+
+message VerifyEmailLinkExpired {
+  string message = 1;
+  string user_id = 2;
+}
+
+message VerifyEmailRequest {
+  string link = 1; // @gotags: validate:"required" format:"uuid"
 }
 
 message FindUserByIDRequest {
