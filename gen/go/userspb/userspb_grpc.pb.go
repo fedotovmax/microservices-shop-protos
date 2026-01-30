@@ -20,13 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_CreateUser_FullMethodName        = "/userspb.UserService/CreateUser"
-	UserService_UpdateUserProfile_FullMethodName = "/userspb.UserService/UpdateUserProfile"
-	UserService_FindUserByID_FullMethodName      = "/userspb.UserService/FindUserByID"
-	UserService_FindUserByEmail_FullMethodName   = "/userspb.UserService/FindUserByEmail"
-	UserService_UserSessionAction_FullMethodName = "/userspb.UserService/UserSessionAction"
-	UserService_VerifyEmail_FullMethodName       = "/userspb.UserService/VerifyEmail"
-	UserService_SendNewLink_FullMethodName       = "/userspb.UserService/SendNewLink"
+	UserService_CreateUser_FullMethodName             = "/userspb.UserService/CreateUser"
+	UserService_UpdateUserProfile_FullMethodName      = "/userspb.UserService/UpdateUserProfile"
+	UserService_FindUserByID_FullMethodName           = "/userspb.UserService/FindUserByID"
+	UserService_FindUserByEmail_FullMethodName        = "/userspb.UserService/FindUserByEmail"
+	UserService_UserSessionAction_FullMethodName      = "/userspb.UserService/UserSessionAction"
+	UserService_VerifyEmail_FullMethodName            = "/userspb.UserService/VerifyEmail"
+	UserService_SendNewEmailVerifyLink_FullMethodName = "/userspb.UserService/SendNewEmailVerifyLink"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -39,7 +39,7 @@ type UserServiceClient interface {
 	FindUserByEmail(ctx context.Context, in *FindUserByEmailRequest, opts ...grpc.CallOption) (*User, error)
 	UserSessionAction(ctx context.Context, in *UserSessionActionRequest, opts ...grpc.CallOption) (*UserSessionActionResponse, error)
 	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
-	SendNewLink(ctx context.Context, in *SendNewLinkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SendNewEmailVerifyLink(ctx context.Context, in *SendNewEmailVerifyLinkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type userServiceClient struct {
@@ -110,10 +110,10 @@ func (c *userServiceClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequ
 	return out, nil
 }
 
-func (c *userServiceClient) SendNewLink(ctx context.Context, in *SendNewLinkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *userServiceClient) SendNewEmailVerifyLink(ctx context.Context, in *SendNewEmailVerifyLinkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UserService_SendNewLink_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UserService_SendNewEmailVerifyLink_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,7 +130,7 @@ type UserServiceServer interface {
 	FindUserByEmail(context.Context, *FindUserByEmailRequest) (*User, error)
 	UserSessionAction(context.Context, *UserSessionActionRequest) (*UserSessionActionResponse, error)
 	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
-	SendNewLink(context.Context, *SendNewLinkRequest) (*emptypb.Empty, error)
+	SendNewEmailVerifyLink(context.Context, *SendNewEmailVerifyLinkRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -159,8 +159,8 @@ func (UnimplementedUserServiceServer) UserSessionAction(context.Context, *UserSe
 func (UnimplementedUserServiceServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
 }
-func (UnimplementedUserServiceServer) SendNewLink(context.Context, *SendNewLinkRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendNewLink not implemented")
+func (UnimplementedUserServiceServer) SendNewEmailVerifyLink(context.Context, *SendNewEmailVerifyLinkRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendNewEmailVerifyLink not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -291,20 +291,20 @@ func _UserService_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_SendNewLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendNewLinkRequest)
+func _UserService_SendNewEmailVerifyLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendNewEmailVerifyLinkRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).SendNewLink(ctx, in)
+		return srv.(UserServiceServer).SendNewEmailVerifyLink(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_SendNewLink_FullMethodName,
+		FullMethod: UserService_SendNewEmailVerifyLink_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).SendNewLink(ctx, req.(*SendNewLinkRequest))
+		return srv.(UserServiceServer).SendNewEmailVerifyLink(ctx, req.(*SendNewEmailVerifyLinkRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -341,8 +341,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_VerifyEmail_Handler,
 		},
 		{
-			MethodName: "SendNewLink",
-			Handler:    _UserService_SendNewLink_Handler,
+			MethodName: "SendNewEmailVerifyLink",
+			Handler:    _UserService_SendNewEmailVerifyLink_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

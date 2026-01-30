@@ -75,27 +75,27 @@ func (GenderValue) EnumDescriptor() ([]byte, []int) {
 	return file_userspb_userspb_proto_rawDescGZIP(), []int{0}
 }
 
-type SendNewLinkRequest struct {
+type SendNewEmailVerifyLinkRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SendNewLinkRequest) Reset() {
-	*x = SendNewLinkRequest{}
+func (x *SendNewEmailVerifyLinkRequest) Reset() {
+	*x = SendNewEmailVerifyLinkRequest{}
 	mi := &file_userspb_userspb_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SendNewLinkRequest) String() string {
+func (x *SendNewEmailVerifyLinkRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SendNewLinkRequest) ProtoMessage() {}
+func (*SendNewEmailVerifyLinkRequest) ProtoMessage() {}
 
-func (x *SendNewLinkRequest) ProtoReflect() protoreflect.Message {
+func (x *SendNewEmailVerifyLinkRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_userspb_userspb_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -107,12 +107,12 @@ func (x *SendNewLinkRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SendNewLinkRequest.ProtoReflect.Descriptor instead.
-func (*SendNewLinkRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use SendNewEmailVerifyLinkRequest.ProtoReflect.Descriptor instead.
+func (*SendNewEmailVerifyLinkRequest) Descriptor() ([]byte, []int) {
 	return file_userspb_userspb_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SendNewLinkRequest) GetUserId() string {
+func (x *SendNewEmailVerifyLinkRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
@@ -1275,8 +1275,8 @@ var File_userspb_userspb_proto protoreflect.FileDescriptor
 
 const file_userspb_userspb_proto_rawDesc = "" +
 	"\n" +
-	"\x15userspb/userspb.proto\x12\auserspb\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"-\n" +
-	"\x12SendNewLinkRequest\x12\x17\n" +
+	"\x15userspb/userspb.proto\x12\auserspb\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"8\n" +
+	"\x1dSendNewEmailVerifyLinkRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xd8\x01\n" +
 	"\x13VerifyEmailResponse\x12/\n" +
 	"\x02ok\x18\x01 \x01(\v2\x1d.userspb.EmailVerifiedSuccessH\x00R\x02ok\x12D\n" +
@@ -1376,7 +1376,7 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"\x12GENDER_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11GENDER_UNSELECTED\x10\x01\x12\x0f\n" +
 	"\vGENDER_MALE\x10\x02\x12\x11\n" +
-	"\rGENDER_FEMALE\x10\x032\x8e\x04\n" +
+	"\rGENDER_FEMALE\x10\x032\xa4\x04\n" +
 	"\vUserService\x12E\n" +
 	"\n" +
 	"CreateUser\x12\x1a.userspb.CreateUserRequest\x1a\x1b.userspb.CreateUserResponse\x12N\n" +
@@ -1384,8 +1384,8 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"\fFindUserByID\x12\x1c.userspb.FindUserByIDRequest\x1a\r.userspb.User\x12A\n" +
 	"\x0fFindUserByEmail\x12\x1f.userspb.FindUserByEmailRequest\x1a\r.userspb.User\x12Z\n" +
 	"\x11UserSessionAction\x12!.userspb.UserSessionActionRequest\x1a\".userspb.UserSessionActionResponse\x12H\n" +
-	"\vVerifyEmail\x12\x1b.userspb.VerifyEmailRequest\x1a\x1c.userspb.VerifyEmailResponse\x12B\n" +
-	"\vSendNewLink\x12\x1b.userspb.SendNewLinkRequest\x1a\x16.google.protobuf.EmptyB9Z7github.com/fedotovmax/microservices-shop-protos/userspbb\x06proto3"
+	"\vVerifyEmail\x12\x1b.userspb.VerifyEmailRequest\x1a\x1c.userspb.VerifyEmailResponse\x12X\n" +
+	"\x16SendNewEmailVerifyLink\x12&.userspb.SendNewEmailVerifyLinkRequest\x1a\x16.google.protobuf.EmptyB9Z7github.com/fedotovmax/microservices-shop-protos/userspbb\x06proto3"
 
 var (
 	file_userspb_userspb_proto_rawDescOnce sync.Once
@@ -1402,29 +1402,29 @@ func file_userspb_userspb_proto_rawDescGZIP() []byte {
 var file_userspb_userspb_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_userspb_userspb_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_userspb_userspb_proto_goTypes = []any{
-	(GenderValue)(0),                  // 0: userspb.GenderValue
-	(*SendNewLinkRequest)(nil),        // 1: userspb.SendNewLinkRequest
-	(*VerifyEmailResponse)(nil),       // 2: userspb.VerifyEmailResponse
-	(*EmailVerifiedSuccess)(nil),      // 3: userspb.EmailVerifiedSuccess
-	(*VerifyEmailLinkNotFound)(nil),   // 4: userspb.VerifyEmailLinkNotFound
-	(*VerifyEmailLinkExpired)(nil),    // 5: userspb.VerifyEmailLinkExpired
-	(*VerifyEmailRequest)(nil),        // 6: userspb.VerifyEmailRequest
-	(*FindUserByIDRequest)(nil),       // 7: userspb.FindUserByIDRequest
-	(*FindUserByEmailRequest)(nil),    // 8: userspb.FindUserByEmailRequest
-	(*CreateUserRequest)(nil),         // 9: userspb.CreateUserRequest
-	(*CreateUserResponse)(nil),        // 10: userspb.CreateUserResponse
-	(*UserSessionActionRequest)(nil),  // 11: userspb.UserSessionActionRequest
-	(*UserDeleted)(nil),               // 12: userspb.UserDeleted
-	(*UserEmailNotVerified)(nil),      // 13: userspb.UserEmailNotVerified
-	(*UserBadCredentials)(nil),        // 14: userspb.UserBadCredentials
-	(*UserOK)(nil),                    // 15: userspb.UserOK
-	(*UserSessionActionResponse)(nil), // 16: userspb.UserSessionActionResponse
-	(*UpdateUserProfileData)(nil),     // 17: userspb.UpdateUserProfileData
-	(*UpdateUserProfileRequest)(nil),  // 18: userspb.UpdateUserProfileRequest
-	(*User)(nil),                      // 19: userspb.User
-	(*Profile)(nil),                   // 20: userspb.Profile
-	(*timestamppb.Timestamp)(nil),     // 21: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),             // 22: google.protobuf.Empty
+	(GenderValue)(0),                      // 0: userspb.GenderValue
+	(*SendNewEmailVerifyLinkRequest)(nil), // 1: userspb.SendNewEmailVerifyLinkRequest
+	(*VerifyEmailResponse)(nil),           // 2: userspb.VerifyEmailResponse
+	(*EmailVerifiedSuccess)(nil),          // 3: userspb.EmailVerifiedSuccess
+	(*VerifyEmailLinkNotFound)(nil),       // 4: userspb.VerifyEmailLinkNotFound
+	(*VerifyEmailLinkExpired)(nil),        // 5: userspb.VerifyEmailLinkExpired
+	(*VerifyEmailRequest)(nil),            // 6: userspb.VerifyEmailRequest
+	(*FindUserByIDRequest)(nil),           // 7: userspb.FindUserByIDRequest
+	(*FindUserByEmailRequest)(nil),        // 8: userspb.FindUserByEmailRequest
+	(*CreateUserRequest)(nil),             // 9: userspb.CreateUserRequest
+	(*CreateUserResponse)(nil),            // 10: userspb.CreateUserResponse
+	(*UserSessionActionRequest)(nil),      // 11: userspb.UserSessionActionRequest
+	(*UserDeleted)(nil),                   // 12: userspb.UserDeleted
+	(*UserEmailNotVerified)(nil),          // 13: userspb.UserEmailNotVerified
+	(*UserBadCredentials)(nil),            // 14: userspb.UserBadCredentials
+	(*UserOK)(nil),                        // 15: userspb.UserOK
+	(*UserSessionActionResponse)(nil),     // 16: userspb.UserSessionActionResponse
+	(*UpdateUserProfileData)(nil),         // 17: userspb.UpdateUserProfileData
+	(*UpdateUserProfileRequest)(nil),      // 18: userspb.UpdateUserProfileRequest
+	(*User)(nil),                          // 19: userspb.User
+	(*Profile)(nil),                       // 20: userspb.Profile
+	(*timestamppb.Timestamp)(nil),         // 21: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),                 // 22: google.protobuf.Empty
 }
 var file_userspb_userspb_proto_depIdxs = []int32{
 	3,  // 0: userspb.VerifyEmailResponse.ok:type_name -> userspb.EmailVerifiedSuccess
@@ -1449,14 +1449,14 @@ var file_userspb_userspb_proto_depIdxs = []int32{
 	8,  // 19: userspb.UserService.FindUserByEmail:input_type -> userspb.FindUserByEmailRequest
 	11, // 20: userspb.UserService.UserSessionAction:input_type -> userspb.UserSessionActionRequest
 	6,  // 21: userspb.UserService.VerifyEmail:input_type -> userspb.VerifyEmailRequest
-	1,  // 22: userspb.UserService.SendNewLink:input_type -> userspb.SendNewLinkRequest
+	1,  // 22: userspb.UserService.SendNewEmailVerifyLink:input_type -> userspb.SendNewEmailVerifyLinkRequest
 	10, // 23: userspb.UserService.CreateUser:output_type -> userspb.CreateUserResponse
 	22, // 24: userspb.UserService.UpdateUserProfile:output_type -> google.protobuf.Empty
 	19, // 25: userspb.UserService.FindUserByID:output_type -> userspb.User
 	19, // 26: userspb.UserService.FindUserByEmail:output_type -> userspb.User
 	16, // 27: userspb.UserService.UserSessionAction:output_type -> userspb.UserSessionActionResponse
 	2,  // 28: userspb.UserService.VerifyEmail:output_type -> userspb.VerifyEmailResponse
-	22, // 29: userspb.UserService.SendNewLink:output_type -> google.protobuf.Empty
+	22, // 29: userspb.UserService.SendNewEmailVerifyLink:output_type -> google.protobuf.Empty
 	23, // [23:30] is the sub-list for method output_type
 	16, // [16:23] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name

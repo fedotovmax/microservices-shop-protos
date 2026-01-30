@@ -21,11 +21,11 @@ service UserService {
 
   rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
 
-  rpc SendNewLink(SendNewLinkRequest) returns (google.protobuf.Empty);
+  rpc SendNewEmailVerifyLink(SendNewEmailVerifyLinkRequest) returns (google.protobuf.Empty);
 }
 
 
-message SendNewLinkRequest {
+message SendNewEmailVerifyLinkRequest {
   string user_id = 1;
 }
 
