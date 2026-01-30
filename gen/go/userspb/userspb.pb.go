@@ -699,7 +699,8 @@ func (x *UserDeleted) GetLastChanceRestore() *timestamppb.Timestamp {
 
 type UserEmailNotVerified struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty" validate:"required"`  
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty" validate:"required"`              
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" validate:"required"`  
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -737,6 +738,13 @@ func (*UserEmailNotVerified) Descriptor() ([]byte, []int) {
 func (x *UserEmailNotVerified) GetMessage() string {
 	if x != nil {
 		return x.Message
+	}
+	return ""
+}
+
+func (x *UserEmailNotVerified) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -1308,9 +1316,10 @@ const file_userspb_userspb_proto_rawDesc = "" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x129\n" +
 	"\n" +
 	"deleted_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\x12J\n" +
-	"\x13last_chance_restore\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x11lastChanceRestore\"0\n" +
+	"\x13last_chance_restore\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x11lastChanceRestore\"I\n" +
 	"\x14UserEmailNotVerified\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\".\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\".\n" +
 	"\x12UserBadCredentials\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\"7\n" +
 	"\x06UserOK\x12\x14\n" +

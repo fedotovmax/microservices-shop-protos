@@ -85,6 +85,7 @@ message UserDeleted {
 
 message UserEmailNotVerified {
   string message = 1; // @gotags: validate:"required"
+  string user_id = 2; // @gotags: validate:"required"
 }
 
 message UserBadCredentials {
