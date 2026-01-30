@@ -2,8 +2,12 @@ syntax = "proto3";
 
 package assortimentpb;
 
-import "validate/validate.proto";
 
 import "google/protobuf/empty.proto";
 
 option go_package = "github.com/fedotovmax/microservices-shop-protos/assortimentpb";
+
+
+service AssortimentService {
+  rpc Test (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
