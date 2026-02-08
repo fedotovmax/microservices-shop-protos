@@ -3,7 +3,6 @@ syntax = "proto3";
 package userspb;
 
 import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
 
 
 option go_package = "github.com/fedotovmax/microservices-shop-protos/userspb";
