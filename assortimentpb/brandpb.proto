@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package assortimentpb;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/fedotovmax/microservices-shop-protos/assortimentpb";
+
+
+service BrandService {
+  rpc Create (CreateBrandRequest) returns (google.protobuf.Empty);
+  rpc Update(UpdateBrandRequest) returns (google.protobuf.Empty);
+  rpc FindByID(BrandByIDRequest) returns (Brand);
+  rpc FindBySlug(BrandBySlugRequest) returns (Brand);
+  rpc DeleteByID(BrandByIDRequest) returns (google.protobuf.Empty);
+  rpc DeleteBySlug(BrandBySlugRequest) returns (google.protobuf.Empty);
+}
+
+
+message Brand {
+  string id = 1;
+  string title = 2;
+  string slug = 3;
+  optional string description = 4;
+  optional string logo_url = 5;
+  optional bool is_active = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+message BrandByIDRequest {
+  string id = 1;
+}
+
+message BrandBySlugRequest {
+  string id = 1;
+}
+
+
+message UpdateBrandRequest {
+  string title = 1;
+  optional string description = 2;
+  optional string logo_url = 3;
+  optional bool is_active = 4;
+}
+
+
+
+message CreateBrandRequest {
+  string title = 1;
+  optional string description = 2;
+  optional string logo_url = 3;
+}
