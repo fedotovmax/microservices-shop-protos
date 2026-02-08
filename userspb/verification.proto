@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package userspb;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+
+option go_package = "github.com/fedotovmax/microservices-shop-protos/userspb";
+
+
+service VerificationService {
+
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
+
+  rpc SendNewEmailVerifyLink(SendNewEmailVerifyLinkRequest) returns (google.protobuf.Empty);
+}
+
+
+message SendNewEmailVerifyLinkRequest {
+  string user_id = 1;
+}
+
+message VerifyEmailResponse {
+  oneof payload {
+    EmailVerifiedSuccess ok = 1;
+    VerifyEmailLinkExpired link_expired = 2;
+    VerifyEmailLinkNotFound not_found = 3;
+  }
+}
+
+message EmailVerifiedSuccess {
+  string message = 1;
+}
+
+message VerifyEmailLinkNotFound {
+  string message = 1;
+}
+
+message VerifyEmailLinkExpired {
+  string message = 1;
+  string user_id = 2;
+}
+
+message VerifyEmailRequest {
+  string link = 1; // @gotags: validate:"required" format:"uuid"
+}

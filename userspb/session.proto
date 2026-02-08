@@ -1,0 +1,46 @@
+package userspb;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+
+option go_package = "github.com/fedotovmax/microservices-shop-protos/userspb";
+
+service SessionActionService {
+  rpc CheckCredentials(UserSessionActionRequest) returns (UserSessionActionResponse);
+}
+
+
+message UserSessionActionRequest {
+  string email = 1; // @gotags: example:"makc-dgek@mail.ru" validate:"required" format:"email"
+  string password = 2; // @gotags: validate:"required"
+}
+
+message UserDeleted {
+  string message = 1; // @gotags: validate:"required"
+  google.protobuf.Timestamp deleted_at = 2; // @gotags: validate:"required"
+  google.protobuf.Timestamp last_chance_restore = 3; // @gotags: validate:"required"
+}
+
+message UserEmailNotVerified {
+  string message = 1; // @gotags: validate:"required"
+  string user_id = 2; // @gotags: validate:"required"
+}
+
+message UserBadCredentials {
+  string message = 1; // @gotags: validate:"required"
+}
+
+message UserOK {
+  string email = 1; // @gotags: validate:"required" format:"email"
+  string user_id = 2; // @gotags: validate:"required" format:"uuid"
+}
+
+message UserSessionActionResponse {
+  oneof payload {
+    UserDeleted deleted = 1;
+    UserEmailNotVerified email_not_verified = 2;
+    UserBadCredentials bad_credentials = 3;
+    UserOK ok = 4;
+  }
+}

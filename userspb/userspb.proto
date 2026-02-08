@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/fedotovmax/microservices-shop-protos/userspb";
 
 service UserService {
+
   rpc CreateUser(CreateUserRequest) returns ( CreateUserResponse);
 
   rpc UpdateUserProfile(UpdateUserProfileRequest) returns (google.protobuf.Empty);
@@ -16,44 +17,8 @@ service UserService {
   rpc FindUserByID(FindUserByIDRequest) returns (User);
 
   rpc FindUserByEmail(FindUserByEmailRequest) returns (User);
-
-  rpc UserSessionAction(UserSessionActionRequest) returns (UserSessionActionResponse);
-
-  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
-
-  rpc SendNewEmailVerifyLink(SendNewEmailVerifyLinkRequest) returns (google.protobuf.Empty);
 }
 
-
-message SendNewEmailVerifyLinkRequest {
-  string user_id = 1;
-}
-
-message VerifyEmailResponse {
-  oneof payload {
-    EmailVerifiedSuccess ok = 1;
-    VerifyEmailLinkExpired link_expired = 2;
-    VerifyEmailLinkNotFound not_found = 3;
-  }
-}
-
-
-message EmailVerifiedSuccess {
-  string message = 1;
-}
-
-message VerifyEmailLinkNotFound {
-  string message = 1;
-}
-
-message VerifyEmailLinkExpired {
-  string message = 1;
-  string user_id = 2;
-}
-
-message VerifyEmailRequest {
-  string link = 1; // @gotags: validate:"required" format:"uuid"
-}
 
 message FindUserByIDRequest {
   string id = 1; // @gotags: validate:"required" format:"uuid"
@@ -70,41 +35,6 @@ message CreateUserRequest {
 
 message CreateUserResponse {
   string id = 1; // @gotags: validate:"required" format:"uuid"
-}
-
-message UserSessionActionRequest {
-  string email = 1; // @gotags: example:"makc-dgek@mail.ru" validate:"required" format:"email"
-  string password = 2; // @gotags: validate:"required"
-}
-
-message UserDeleted {
-  string message = 1; // @gotags: validate:"required"
-  google.protobuf.Timestamp deleted_at = 2; // @gotags: validate:"required"
-  google.protobuf.Timestamp last_chance_restore = 3; // @gotags: validate:"required"
-}
-
-message UserEmailNotVerified {
-  string message = 1; // @gotags: validate:"required"
-  string user_id = 2; // @gotags: validate:"required"
-}
-
-message UserBadCredentials {
-  string message = 1; // @gotags: validate:"required"
-}
-
-message UserOK {
-  string email = 1; // @gotags: validate:"required" format:"email"
-  string user_id = 2; // @gotags: validate:"required" format:"uuid"
-}
-
-
-message UserSessionActionResponse {
-  oneof payload {
-    UserDeleted deleted = 1;
-    UserEmailNotVerified email_not_verified = 2;
-    UserBadCredentials bad_credentials = 3;
-    UserOK ok = 4;
-  }
 }
 
 message UpdateUserProfileData {

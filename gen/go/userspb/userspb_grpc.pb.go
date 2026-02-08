@@ -20,13 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_CreateUser_FullMethodName             = "/userspb.UserService/CreateUser"
-	UserService_UpdateUserProfile_FullMethodName      = "/userspb.UserService/UpdateUserProfile"
-	UserService_FindUserByID_FullMethodName           = "/userspb.UserService/FindUserByID"
-	UserService_FindUserByEmail_FullMethodName        = "/userspb.UserService/FindUserByEmail"
-	UserService_UserSessionAction_FullMethodName      = "/userspb.UserService/UserSessionAction"
-	UserService_VerifyEmail_FullMethodName            = "/userspb.UserService/VerifyEmail"
-	UserService_SendNewEmailVerifyLink_FullMethodName = "/userspb.UserService/SendNewEmailVerifyLink"
+	UserService_CreateUser_FullMethodName        = "/userspb.UserService/CreateUser"
+	UserService_UpdateUserProfile_FullMethodName = "/userspb.UserService/UpdateUserProfile"
+	UserService_FindUserByID_FullMethodName      = "/userspb.UserService/FindUserByID"
+	UserService_FindUserByEmail_FullMethodName   = "/userspb.UserService/FindUserByEmail"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -37,9 +34,6 @@ type UserServiceClient interface {
 	UpdateUserProfile(ctx context.Context, in *UpdateUserProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	FindUserByID(ctx context.Context, in *FindUserByIDRequest, opts ...grpc.CallOption) (*User, error)
 	FindUserByEmail(ctx context.Context, in *FindUserByEmailRequest, opts ...grpc.CallOption) (*User, error)
-	UserSessionAction(ctx context.Context, in *UserSessionActionRequest, opts ...grpc.CallOption) (*UserSessionActionResponse, error)
-	VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error)
-	SendNewEmailVerifyLink(ctx context.Context, in *SendNewEmailVerifyLinkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type userServiceClient struct {
@@ -90,36 +84,6 @@ func (c *userServiceClient) FindUserByEmail(ctx context.Context, in *FindUserByE
 	return out, nil
 }
 
-func (c *userServiceClient) UserSessionAction(ctx context.Context, in *UserSessionActionRequest, opts ...grpc.CallOption) (*UserSessionActionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserSessionActionResponse)
-	err := c.cc.Invoke(ctx, UserService_UserSessionAction_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) VerifyEmail(ctx context.Context, in *VerifyEmailRequest, opts ...grpc.CallOption) (*VerifyEmailResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(VerifyEmailResponse)
-	err := c.cc.Invoke(ctx, UserService_VerifyEmail_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) SendNewEmailVerifyLink(ctx context.Context, in *SendNewEmailVerifyLinkRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UserService_SendNewEmailVerifyLink_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
@@ -128,9 +92,6 @@ type UserServiceServer interface {
 	UpdateUserProfile(context.Context, *UpdateUserProfileRequest) (*emptypb.Empty, error)
 	FindUserByID(context.Context, *FindUserByIDRequest) (*User, error)
 	FindUserByEmail(context.Context, *FindUserByEmailRequest) (*User, error)
-	UserSessionAction(context.Context, *UserSessionActionRequest) (*UserSessionActionResponse, error)
-	VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error)
-	SendNewEmailVerifyLink(context.Context, *SendNewEmailVerifyLinkRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -152,15 +113,6 @@ func (UnimplementedUserServiceServer) FindUserByID(context.Context, *FindUserByI
 }
 func (UnimplementedUserServiceServer) FindUserByEmail(context.Context, *FindUserByEmailRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindUserByEmail not implemented")
-}
-func (UnimplementedUserServiceServer) UserSessionAction(context.Context, *UserSessionActionRequest) (*UserSessionActionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UserSessionAction not implemented")
-}
-func (UnimplementedUserServiceServer) VerifyEmail(context.Context, *VerifyEmailRequest) (*VerifyEmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method VerifyEmail not implemented")
-}
-func (UnimplementedUserServiceServer) SendNewEmailVerifyLink(context.Context, *SendNewEmailVerifyLinkRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendNewEmailVerifyLink not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -255,60 +207,6 @@ func _UserService_FindUserByEmail_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_UserSessionAction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserSessionActionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).UserSessionAction(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_UserSessionAction_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UserSessionAction(ctx, req.(*UserSessionActionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_VerifyEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(VerifyEmailRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).VerifyEmail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_VerifyEmail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).VerifyEmail(ctx, req.(*VerifyEmailRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_SendNewEmailVerifyLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendNewEmailVerifyLinkRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).SendNewEmailVerifyLink(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_SendNewEmailVerifyLink_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).SendNewEmailVerifyLink(ctx, req.(*SendNewEmailVerifyLinkRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -331,18 +229,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindUserByEmail",
 			Handler:    _UserService_FindUserByEmail_Handler,
-		},
-		{
-			MethodName: "UserSessionAction",
-			Handler:    _UserService_UserSessionAction_Handler,
-		},
-		{
-			MethodName: "VerifyEmail",
-			Handler:    _UserService_VerifyEmail_Handler,
-		},
-		{
-			MethodName: "SendNewEmailVerifyLink",
-			Handler:    _UserService_SendNewEmailVerifyLink_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
